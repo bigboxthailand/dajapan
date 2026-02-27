@@ -108,7 +108,111 @@ export default function FujiPapercraft() {
 
             {/* Papercraft Mt. Fuji using real image */}
             <div className="relative w-full max-w-3xl mx-auto h-[400px] md:h-[500px]">
-                {/* Mt. Fuji image - assembles from multiple directions */}
+
+                {/* ===== Rising Sun behind Mt. Fuji ===== */}
+                <motion.div
+                    className="absolute z-[1] pointer-events-none"
+                    style={{
+                        top: "5%",
+                        left: "50%",
+                        translateX: "-50%",
+                    }}
+                    initial={{ opacity: 0, y: 80, scale: 0.3 }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                    }}
+                    transition={{
+                        duration: 1.8,
+                        delay: 0.3,
+                        ease: "easeOut",
+                        // Bounce effect
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 12,
+                    }}
+                    viewport={{ once: true }}
+                >
+                    {/* Golden glow behind sun */}
+                    <motion.div
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                            width: 200,
+                            height: 200,
+                            background: "radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,165,0,0.1) 50%, transparent 70%)",
+                            transform: "translate(-50%, -50%)",
+                            left: "50%",
+                            top: "50%",
+                        }}
+                        animate={{
+                            scale: [1, 1.2, 1],
+                            opacity: [0.5, 0.8, 0.5],
+                        }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <Image
+                        src="/sun.png"
+                        alt="Rising Sun"
+                        width={180}
+                        height={180}
+                        className="w-32 md:w-44 h-auto drop-shadow-lg"
+                    />
+                </motion.div>
+
+                {/* ===== Hawk flying across ===== */}
+                <motion.div
+                    className="absolute z-20 pointer-events-none"
+                    style={{ top: "8%", left: "-15%" }}
+                    initial={{ x: "-100%", opacity: 0 }}
+                    whileInView={{
+                        x: ["0%", "400%", "800%"],
+                        y: [0, -40, -20, -60, -30],
+                        opacity: [0, 1, 1, 1, 0],
+                    }}
+                    transition={{
+                        duration: 5,
+                        delay: 1.5,
+                        ease: "easeInOut",
+                    }}
+                    viewport={{ once: true }}
+                >
+                    <Image
+                        src="/hawk.png"
+                        alt="Hawk flying"
+                        width={100}
+                        height={100}
+                        className="w-16 md:w-24 h-auto"
+                    />
+                </motion.div>
+
+                {/* Second hawk (smaller, delayed) */}
+                <motion.div
+                    className="absolute z-20 pointer-events-none"
+                    style={{ top: "15%", left: "-10%" }}
+                    initial={{ x: "-100%", opacity: 0 }}
+                    whileInView={{
+                        x: ["0%", "500%", "1000%"],
+                        y: [0, -30, -10, -50, -20],
+                        opacity: [0, 0.7, 0.7, 0.7, 0],
+                    }}
+                    transition={{
+                        duration: 6,
+                        delay: 2.5,
+                        ease: "easeInOut",
+                    }}
+                    viewport={{ once: true }}
+                >
+                    <Image
+                        src="/hawk.png"
+                        alt=""
+                        width={60}
+                        height={60}
+                        className="w-10 md:w-14 h-auto opacity-70"
+                    />
+                </motion.div>
+
+                {/* Mt. Fuji image - assembles with bounce */}
                 <motion.div
                     className="absolute inset-0 flex items-center justify-center z-10"
                     style={{
@@ -117,14 +221,27 @@ export default function FujiPapercraft() {
                         y: useTransform(assembleProgress, [0, 0.6], [80, 0]),
                     }}
                 >
-                    <Image
-                        src="/fuji.png"
-                        alt="Papercraft Mount Fuji"
-                        width={700}
-                        height={500}
-                        className="w-[85%] md:w-[75%] h-auto drop-shadow-2xl"
-                        priority
-                    />
+                    {/* Bounce effect on Fuji when it appears */}
+                    <motion.div
+                        initial={{ scale: 0.8, y: 40 }}
+                        whileInView={{ scale: 1, y: 0 }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 120,
+                            damping: 10,
+                            delay: 0.5,
+                        }}
+                        viewport={{ once: true }}
+                    >
+                        <Image
+                            src="/fuji.png"
+                            alt="Papercraft Mount Fuji"
+                            width={700}
+                            height={500}
+                            className="w-[85%] md:w-[75%] h-auto drop-shadow-2xl mx-auto"
+                            priority
+                        />
+                    </motion.div>
                 </motion.div>
 
                 {/* Eruption particles */}
