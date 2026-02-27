@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff0f3;
+  /* Sakura pink background */
+  --foreground: #2d2d2d;
+  --matcha: #5a7d37;
+  --matcha-light: #7da55a;
+  --sakura: #ffb7c5;
+  --sakura-deep: #e8829a;
+  --sakura-hover: #fa9eb0;
+  --wood: #4a3728;
+  --wood-light: #8b5a2b;
+  --washi: #fff5f7;
+  --pink-bg: #fff0f3;
+  --pink-light: #ffe8ed;
+  --pink-soft: #ffd6de;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-matcha: var(--matcha);
+  --color-matcha-light: var(--matcha-light);
+  --color-sakura: var(--sakura);
+  --color-sakura-hover: var(--sakura-hover);
+  --color-wood: var(--wood);
+  --color-wood-light: var(--wood-light);
+  --color-washi: var(--washi);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Washi Texture Overlay */
+.washi-pattern {
+  background-color: var(--pink-bg);
+  background-image:
+    url("https://www.transparenttextures.com/patterns/natural-paper.png");
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pink-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sakura-deep);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sakura-hover);
+}
+
+@utility btn-primary {
+  padding: 0.75rem 2rem;
+  background-color: var(--matcha);
+  color: white;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: var(--matcha-light);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+@utility btn-sakura {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, var(--sakura), var(--sakura-deep));
+  color: var(--wood);
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba(255, 183, 197, 0.4);
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 14px 20px -3px rgba(255, 183, 197, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
