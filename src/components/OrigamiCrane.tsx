@@ -7,7 +7,7 @@ export default function OrigamiCrane() {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll();
 
-    // Crane X position follows scroll
+    // Crane position follows scroll
     const craneX = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], ["10%", "70%", "20%", "80%", "50%"]);
     const craneY = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], ["15vh", "35vh", "55vh", "70vh", "85vh"]);
     const craneRotate = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [-15, 10, -10, 15, 0]);
@@ -27,29 +27,25 @@ export default function OrigamiCrane() {
                 {/* Origami Crane SVG */}
                 <motion.svg
                     viewBox="0 0 120 80"
-                    className="w-16 md:w-20 h-auto drop-shadow-md"
+                    className="w-16 md:w-20 h-auto drop-shadow-md opacity-60"
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
                     {/* Body */}
                     <polygon points="60,10 30,50 90,50" fill="#fef3e3" stroke="#d4896b" strokeWidth="1" />
                     {/* Left wing */}
-                    <motion.polygon
+                    <polygon
                         points="30,50 5,30 55,40"
                         fill="#fff5ee"
                         stroke="#d4896b"
                         strokeWidth="1"
-                        animate={{ points: ["30,50 5,30 55,40", "30,50 5,22 55,38", "30,50 5,30 55,40"] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     />
                     {/* Right wing */}
-                    <motion.polygon
+                    <polygon
                         points="90,50 115,30 65,40"
                         fill="#fff5ee"
                         stroke="#d4896b"
                         strokeWidth="1"
-                        animate={{ points: ["90,50 115,30 65,40", "90,50 115,22 65,38", "90,50 115,30 65,40"] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.1 }}
                     />
                     {/* Tail */}
                     <polygon points="60,10 50,2 55,15" fill="#fef3e3" stroke="#d4896b" strokeWidth="0.5" />
@@ -64,7 +60,7 @@ export default function OrigamiCrane() {
                 </motion.svg>
 
                 {/* Trail sparkles */}
-                {[...Array(3)].map((_, i) => (
+                {[0, 1, 2].map((i) => (
                     <motion.div
                         key={i}
                         className="absolute w-1 h-1 rounded-full"
