@@ -109,7 +109,7 @@ export default function FujiPapercraft() {
             {/* Papercraft Mt. Fuji using real image - GIGANTIC VERSION */}
             <div className="relative w-full max-w-[1400px] mx-auto h-[800px] md:h-[1100px] mt-10">
 
-                {/* ===== New Rising Sun with Rays - Centered at Peak ===== */}
+                {/* ===== New Rising Sun with Rays - Centered at Peak - Smaller & Slower ===== */}
                 <motion.div
                     className="absolute z-[1] pointer-events-none"
                     style={{
@@ -118,28 +118,25 @@ export default function FujiPapercraft() {
                         translateX: "-50%",
                         translateY: "-50%",
                     }}
-                    initial={{ opacity: 0, y: 400, scale: 0.2 }}
+                    initial={{ opacity: 0, y: 300, scale: 0.2 }}
                     whileInView={{
                         opacity: 1,
                         y: 0,
-                        scale: 1.3,
+                        scale: 0.65, // เล็กลงครึ่งหนึ่งจาก 1.3
                     }}
                     transition={{
-                        duration: 2.5,
+                        duration: 5, // ขึ้นช้าๆ สโลว์ๆ
                         delay: 0.4,
                         ease: "easeOut",
-                        type: "spring",
-                        stiffness: 50,
-                        damping: 15,
                     }}
                     viewport={{ once: true }}
                 >
                     <Image
                         src="/sun.png"
                         alt="Rising Sun with Rays"
-                        width={600}
-                        height={600}
-                        className="w-96 md:w-[600px] h-auto drop-shadow-2xl"
+                        width={400}
+                        height={400}
+                        className="w-48 md:w-[300px] h-auto drop-shadow-2xl"
                     />
                 </motion.div>
 
