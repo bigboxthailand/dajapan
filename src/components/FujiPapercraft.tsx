@@ -118,11 +118,11 @@ export default function FujiPapercraft() {
                         translateX: "-50%",
                         translateY: "-50%",
                     }}
-                    initial={{ opacity: 0, y: 300, scale: 0.2 }}
+                    initial={{ opacity: 0, y: 400, scale: 0.2 }}
                     whileInView={{
                         opacity: 1,
-                        y: 0,
-                        scale: 0.65, // เล็กลงครึ่งหนึ่งจาก 1.3
+                        y: -100, // เลื่อนให้ขึ้นมาสูงกว่ายอดเขาเพื่อให้เห็น
+                        scale: 0.8, // ใหญ่ขึ้นนิดนึง
                     }}
                     transition={{
                         duration: 5, // ขึ้นช้าๆ สโลว์ๆ
