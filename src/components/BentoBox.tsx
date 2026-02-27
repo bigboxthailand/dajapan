@@ -10,60 +10,54 @@ const courses = [
         title: "สนทนา",
         jp: "会話コース",
         desc: "ฝึกพูดเพื่อใช้งานจริง สั่งอาหาร ถามทาง ช็อปปิ้ง",
-        icon: "/sushi.png",
-        label: "🍣 ซูชิ",
+        icon: "/icon-tea.png",
         price: "฿2,900",
-        color: "#ff8a65",
+        color: "#5a7d37", // Matcha
     },
     {
         id: "kanji",
         title: "คันจิ",
         jp: "漢字コース",
         desc: "เรียนคันจิตั้งแต่พื้นฐานจนอ่านหนังสือพิมพ์ได้",
-        icon: "/sun.png",
-        label: "☀️ พระอาทิตย์",
+        icon: "/icon-brush.png",
         price: "฿3,500",
-        color: "#ef5350",
+        color: "#e8829a", // Sakura
     },
     {
         id: "grammar",
         title: "ไวยากรณ์",
         jp: "文法コース",
         desc: "เข้าใจโครงสร้างภาษาอย่างลึก เตรียมสอบ JLPT",
-        icon: "/eggplant.png",
-        label: "🍆 มะเขือม่วง",
+        icon: "/icon-fan.png",
         price: "฿3,200",
-        color: "#7e57c2",
+        color: "#4a3728", // Wood
     },
     {
         id: "culture",
         title: "วัฒนธรรม",
         jp: "文化コース",
         desc: "เรียนรู้ขนบธรรมเนียม มารยาท และเทศกาลญี่ปุ่น",
-        icon: "/sakura-blossom.png",
-        label: "🌸 ซากุระ",
+        icon: "/icon-doll.png",
         price: "฿2,500",
-        color: "#ec407a",
+        color: "#ffb7c5", // Sakura Light
     },
     {
         id: "business",
         title: "ธุรกิจ",
         jp: "ビジネスコース",
         desc: "ภาษาญี่ปุ่นสำหรับการทำงาน เขียนอีเมล ประชุม",
-        icon: "/hawk.png",
-        label: "🦅 นกเหยี่ยว",
+        icon: "/icon-coin.png",
         price: "฿4,500",
-        color: "#8d6e63",
+        color: "#8b5a2b", // Wood Light
     },
     {
         id: "travel",
         title: "ท่องเที่ยว",
         jp: "旅行コース",
         desc: "ภาษาญี่ปุ่นสำหรับเที่ยวญี่ปุ่น อ่านป้าย สั่งอาหาร",
-        icon: "/ocean.png",
-        label: "🌊 ทะเล",
+        icon: "/icon-pagoda.png",
         price: "฿1,900",
-        color: "#42a5f5",
+        color: "#d4896b", // Paper/Clay
     },
 ];
 
@@ -144,67 +138,88 @@ export default function BentoBox() {
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.5, delay: i * 0.1 }}
                                     viewport={{ once: true }}
-                                    whileHover={{ scale: 1.05, y: -4 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="relative rounded-2xl p-4 md:p-5 text-left cursor-pointer transition-all"
+                                    whileHover={{ scale: 1.02, y: -4 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="relative rounded-xl p-4 md:p-6 text-left cursor-pointer transition-all overflow-hidden group shadow-md"
                                     style={{
                                         background: isSelected
-                                            ? `linear-gradient(135deg, ${course.color}22, ${course.color}11)`
-                                            : "rgba(255,255,255,0.95)",
+                                            ? `linear-gradient(135deg, white, ${course.color}11)`
+                                            : "white",
+                                        backgroundImage: isSelected
+                                            ? `url('https://www.transparenttextures.com/patterns/natural-paper.png')` // Washi texture
+                                            : `url('https://www.transparenttextures.com/patterns/natural-paper.png')`,
                                         border: isSelected
                                             ? `3px solid ${course.color}`
-                                            : "3px solid transparent",
-                                        boxShadow: isSelected
-                                            ? `0 0 20px ${course.color}33, inset 0 0 20px ${course.color}11`
-                                            : "0 2px 8px rgba(0,0,0,0.05)",
+                                            : "1px solid rgba(139, 90, 43, 0.15)",
                                     }}
                                 >
-                                    {/* Selected indicator */}
+                                    {/* Japanese Background Pattern Overlay */}
+                                    <div
+                                        className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity pointer-events-none"
+                                        style={{
+                                            backgroundImage: "url('https://www.transparenttextures.com/patterns/seigaiha.png')", // Japanese wave pattern
+                                            backgroundSize: "100px",
+                                        }}
+                                    />
+
+                                    {/* Selected indicator (Hanko style) */}
                                     {isSelected && (
                                         <motion.div
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            className="absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center text-white text-sm z-10"
-                                            style={{ background: course.color }}
+                                            initial={{ scale: 0, rotate: -20 }}
+                                            animate={{ scale: 1, rotate: 0 }}
+                                            className="absolute top-2 right-2 w-8 h-8 rounded-sm border-2 flex items-center justify-center font-bold text-xs shadow-sm z-10"
+                                            style={{
+                                                borderColor: course.color,
+                                                color: course.color,
+                                                backgroundColor: "white"
+                                            }}
                                         >
-                                            ✓
+                                            済
                                         </motion.div>
                                     )}
 
-                                    {/* Food icon */}
-                                    <motion.div
-                                        className="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3"
-                                        animate={isSelected ? { rotate: [0, -10, 10, -5, 0] } : {}}
-                                        transition={{ duration: 0.5 }}
-                                    >
-                                        <Image
-                                            src={course.icon}
-                                            alt={course.label}
-                                            width={64}
-                                            height={64}
-                                            className="w-full h-full object-contain drop-shadow-md"
-                                        />
-                                    </motion.div>
+                                    {/* Icon container with fixed height for alignment */}
+                                    <div className="h-28 flex items-center justify-center mb-4 w-full relative z-10">
+                                        <motion.div
+                                            animate={isSelected ? { rotate: [0, -5, 5, -3, 0], scale: [1, 1.1, 1] } : {}}
+                                            transition={{ duration: 0.5 }}
+                                            className="relative"
+                                        >
+                                            <Image
+                                                src={course.icon}
+                                                alt={course.title}
+                                                width={100}
+                                                height={100}
+                                                className="w-20 md:w-24 h-auto object-contain drop-shadow-xl"
+                                            />
+                                        </motion.div>
+                                    </div>
 
                                     {/* Course info */}
-                                    <h3
-                                        className="font-bold text-base md:text-lg mb-1"
-                                        style={{ color: "var(--wood)" }}
-                                    >
-                                        {course.title}
-                                    </h3>
-                                    <p
-                                        className="text-xs mb-2 opacity-40"
-                                        style={{ fontFamily: "var(--font-mincho)", color: "var(--wood)" }}
-                                    >
-                                        {course.jp}
-                                    </p>
-                                    <p className="text-xs mb-3 opacity-60 hidden md:block" style={{ color: "var(--wood-light)" }}>
-                                        {course.desc}
-                                    </p>
-                                    <p className="font-bold text-sm" style={{ color: course.color }}>
-                                        {course.price}
-                                    </p>
+                                    <div className="relative z-10">
+                                        <h3
+                                            className="font-bold text-lg md:text-xl mb-1 flex items-center gap-2"
+                                            style={{ color: "var(--wood)" }}
+                                        >
+                                            <span className="w-1 h-5 bg-red-600 opacity-20" />
+                                            {course.title}
+                                        </h3>
+                                        <p
+                                            className="text-xs mb-2 font-medium"
+                                            style={{ fontFamily: "var(--font-mincho)", color: course.color }}
+                                        >
+                                            {course.jp}
+                                        </p>
+                                        <p className="text-xs mb-3 opacity-60 line-clamp-2 h-8 hidden md:block" style={{ color: "var(--wood-light)" }}>
+                                            {course.desc}
+                                        </p>
+                                        <div className="flex items-center justify-between mt-auto pt-2 border-t border-dashed border-gray-100">
+                                            <p className="font-bold text-base" style={{ color: course.color }}>
+                                                {course.price}
+                                            </p>
+                                            <span className="text-[10px] uppercase tracking-tighter opacity-30">Course</span>
+                                        </div>
+                                    </div>
                                 </motion.button>
                             );
                         })}
