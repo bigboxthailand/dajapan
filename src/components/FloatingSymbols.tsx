@@ -73,42 +73,64 @@ export default function FloatingSymbols() {
                 {symbols.map((symbol, i) => (
                     <motion.div
                         key={i}
-                        initial={{ opacity: 0, y: 40, rotate: positions[i]?.rotate || 0 }}
-                        whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
                         whileHover={{
-                            scale: 1.08,
-                            y: -8,
-                            rotate: positions[i]?.rotate || 0,
+                            y: -10,
+                            boxShadow: "0 20px 25px -5px rgba(232, 130, 154, 0.2)",
                         }}
                         transition={{ duration: 0.6, delay: (positions[i]?.delay || 0) }}
                         viewport={{ once: true }}
-                        className="flex flex-col items-center gap-3 p-6 rounded-2xl cursor-default transition-shadow hover:shadow-xl"
+                        className="relative flex flex-col items-center p-6 rounded-sm cursor-default group"
                         style={{
-                            background: "rgba(255,255,255,0.6)",
-                            border: "1px solid rgba(255,183,197,0.3)",
-                            backdropFilter: "blur(10px)",
+                            background: "white",
+                            backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')", // Washi texture
+                            border: "1px solid rgba(139, 90, 43, 0.2)", // Subtle wood/paper border
+                            boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)",
                         }}
                     >
-                        <div className="relative" style={{ width: symbol.size, height: symbol.size }}>
-                            <Image
-                                src={symbol.src}
-                                alt={symbol.alt}
-                                width={symbol.size}
-                                height={symbol.size}
-                                className="w-full h-full object-contain drop-shadow-lg"
-                            />
+                        {/* Hanko-style accent (Red Japanese stamp feel) */}
+                        <div className="absolute top-3 right-3 w-6 h-6 border-2 border-red-600 rounded-sm opacity-20 group-hover:opacity-60 transition-opacity flex items-center justify-center text-[10px] font-bold text-red-600">
+                            印
                         </div>
-                        <div className="text-center">
-                            <p
-                                className="text-xl font-bold"
+
+                        {/* Image Container with fixed height for alignment */}
+                        <div className="h-40 flex items-center justify-center mb-6 w-full relative">
+                            {/* Decorative traditional circle background */}
+                            <div className="absolute inset-0 bg-red-50 rounded-full scale-75 opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
+
+                            <div className="relative z-10" style={{ width: symbol.size, height: symbol.size }}>
+                                <Image
+                                    src={symbol.src}
+                                    alt={symbol.alt}
+                                    width={200}
+                                    height={200}
+                                    className="w-full h-full object-contain filter drop-shadow-md"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Label Container - Flex grow ensures columns line up */}
+                        <div className="w-full flex flex-col items-center">
+                            {/* Red vertical decorative line */}
+                            <div className="w-1 h-4 bg-red-600 mb-3 opacity-30 group-hover:opacity-100 transition-opacity" />
+
+                            <h3
+                                className="text-2xl font-bold mb-1"
                                 style={{ fontFamily: "var(--font-mincho)", color: "var(--wood)" }}
                             >
                                 {symbol.label}
-                            </p>
-                            <p className="text-sm opacity-60" style={{ color: "var(--wood-light)" }}>
+                            </h3>
+                            <p
+                                className="text-sm font-medium opacity-50 tracking-wide"
+                                style={{ color: "var(--wood-light)" }}
+                            >
                                 {symbol.alt}
                             </p>
                         </div>
+
+                        {/* Washi border bottom accent */}
+                        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-200 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </motion.div>
                 ))}
             </div>
