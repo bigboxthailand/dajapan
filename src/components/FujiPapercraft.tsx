@@ -106,55 +106,55 @@ export default function FujiPapercraft() {
                 </motion.h2>
             </div>
 
-            {/* Papercraft Mt. Fuji using real image - ENLARGED */}
-            <div className="relative w-full max-w-6xl mx-auto h-[600px] md:h-[800px]">
+            {/* Papercraft Mt. Fuji using real image - GIGANTIC VERSION */}
+            <div className="relative w-full max-w-[1400px] mx-auto h-[800px] md:h-[1100px] mt-10">
 
-                {/* ===== Rising Sun behind Mt. Fuji - No BG/Glow ===== */}
+                {/* ===== New Rising Sun with Rays behind Mt. Fuji - Shifted Right ===== */}
                 <motion.div
                     className="absolute z-[1] pointer-events-none"
                     style={{
-                        top: "0%",
-                        left: "50%",
+                        top: "-5%",
+                        left: "60%", // เยื้องขวา
                         translateX: "-50%",
                     }}
-                    initial={{ opacity: 0, y: 120, scale: 0.3 }}
+                    initial={{ opacity: 0, y: 150, scale: 0.3 }}
                     whileInView={{
                         opacity: 1,
                         y: 0,
                         scale: 1,
                     }}
                     transition={{
-                        duration: 1.8,
+                        duration: 2,
                         delay: 0.3,
                         ease: "easeOut",
                         type: "spring",
-                        stiffness: 80,
-                        damping: 15,
+                        stiffness: 70,
+                        damping: 18,
                     }}
                     viewport={{ once: true }}
                 >
                     <Image
                         src="/sun.png"
-                        alt="Rising Sun"
-                        width={300}
-                        height={300}
-                        className="w-48 md:w-64 h-auto drop-shadow-lg"
+                        alt="Rising Sun with Rays"
+                        width={600}
+                        height={600}
+                        className="w-80 md:w-[500px] h-auto drop-shadow-2xl"
                     />
                 </motion.div>
 
                 {/* ===== Hawks flying from Right to Left ===== */}
                 <motion.div
                     className="absolute z-20 pointer-events-none"
-                    style={{ top: "8%", right: "-15%" }}
+                    style={{ top: "0%", right: "-10%" }}
                     initial={{ x: "0%", opacity: 0 }}
                     whileInView={{
-                        x: ["0%", "-400%", "-800%"],
+                        x: ["0%", "-600%", "-1200%"],
                         y: [0, -40, -20, -60, -30],
                         opacity: [0, 1, 1, 1, 0],
                     }}
                     transition={{
-                        duration: 5,
-                        delay: 1.5,
+                        duration: 7,
+                        delay: 2,
                         ease: "easeInOut",
                     }}
                     viewport={{ once: true }}
@@ -162,63 +162,38 @@ export default function FujiPapercraft() {
                     <Image
                         src="/hawk.png"
                         alt="Hawk flying"
-                        width={100}
-                        height={100}
-                        className="w-16 md:w-24 h-auto" // Removed scale flip
+                        width={120}
+                        height={120}
+                        className="w-20 md:w-32 h-auto"
                     />
                 </motion.div>
 
-                <motion.div
-                    className="absolute z-20 pointer-events-none"
-                    style={{ top: "18%", right: "-10%" }}
-                    initial={{ x: "0%", opacity: 0 }}
-                    whileInView={{
-                        x: ["0%", "-500%", "-1000%"],
-                        y: [0, -30, -10, -50, -20],
-                        opacity: [0, 0.7, 0.7, 0.7, 0],
-                    }}
-                    transition={{
-                        duration: 6,
-                        delay: 2.5,
-                        ease: "easeInOut",
-                    }}
-                    viewport={{ once: true }}
-                >
-                    <Image
-                        src="/hawk.png"
-                        alt=""
-                        width={60}
-                        height={60}
-                        className="w-10 md:w-14 h-auto opacity-70" // Removed scale flip
-                    />
-                </motion.div>
-
-                {/* Mt. Fuji image - even larger assembly */}
+                {/* Mt. Fuji image - GIGANTIC assembly */}
                 <motion.div
                     className="absolute inset-0 flex items-center justify-center z-10"
                     style={{
-                        scale: useTransform(assembleProgress, [0, 0.7], [0.8, 1.2]),
+                        scale: useTransform(assembleProgress, [0, 0.7], [0.9, 1.5]), // ขยายสเกลให้ใหญ่มาก
                         opacity: useTransform(assembleProgress, [0.05, 0.5], [0, 1]),
-                        y: useTransform(assembleProgress, [0, 0.6], [100, 0]),
+                        y: useTransform(assembleProgress, [0, 0.6], [120, 0]),
                     }}
                 >
                     <motion.div
-                        initial={{ scale: 0.8, y: 60 }}
-                        whileInView={{ scale: 1.1, y: 0 }}
+                        initial={{ scale: 0.8, y: 100 }}
+                        whileInView={{ scale: 1.4, y: 0 }} // สเกล 1.4 สำหรับความอลังการ
                         transition={{
                             type: "spring",
-                            stiffness: 100,
-                            damping: 12,
-                            delay: 0.5,
+                            stiffness: 90,
+                            damping: 15,
+                            delay: 0.6,
                         }}
                         viewport={{ once: true }}
                     >
                         <Image
                             src="/fuji.png"
                             alt="Papercraft Mount Fuji"
-                            width={1200}
-                            height={900}
-                            className="w-[100%] md:w-[120%] h-auto drop-shadow-2xl mx-auto"
+                            width={1600}
+                            height={1200}
+                            className="w-[120%] md:w-[150%] h-auto drop-shadow-2xl mx-auto"
                             priority
                         />
                     </motion.div>
