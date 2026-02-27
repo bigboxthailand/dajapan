@@ -100,3 +100,38 @@ body {
     transform: scale(0.95);
   }
 }
+
+/* ===== 夜 Matsuri Night Mode ===== */
+[data-theme="night"] {
+  --background: #1a0f2e;
+  --foreground: #e8e0d4;
+  --matcha: #7dba4d;
+  --matcha-light: #9dd66e;
+  --sakura: #ff6b9d;
+  --sakura-deep: #d94473;
+  --sakura-hover: #ff89b3;
+  --wood: #e8d4b8;
+  --wood-light: #c9a87c;
+  --washi: #2a1f3e;
+  --pink-bg: #1a0f2e;
+  --pink-light: #241542;
+  --pink-soft: #2e1b56;
+}
+
+[data-theme="night"] body,
+[data-theme="night"] .washi-pattern {
+  background-color: #1a0f2e;
+  background-image: none;
+}
+
+/* Smooth theme transition */
+* {
+  transition: background-color 0.6s ease, color 0.3s ease, border-color 0.4s ease;
+}
+
+/* Disable transition on animated elements */
+[data-theme] canvas,
+[data-theme] video,
+[data-theme] img {
+  transition: none;
+}

@@ -5,9 +5,14 @@ import TeacherSection from "@/components/TeacherSection";
 import EmaReviews from "@/components/EmaReviews";
 import LearningPath from "@/components/LearningPath";
 import FloatingSymbols from "@/components/FloatingSymbols";
+import BentoBox from "@/components/BentoBox";
 import ToriiFooter from "@/components/ToriiFooter";
 import Preloader from "@/components/Preloader";
 import Omikuji from "@/components/Omikuji";
+import { ThemeToggle } from "@/components/ThemeProvider";
+import InkCursorTrail from "@/components/InkCursorTrail";
+import DarumaButton from "@/components/DarumaButton";
+import OrigamiCrane from "@/components/OrigamiCrane";
 
 export default function Home() {
   return (
@@ -15,8 +20,12 @@ export default function Home() {
       {/* Preloader */}
       <Preloader />
 
-      {/* Omikuji floating button (always visible) */}
+      {/* Global interactive elements */}
+      <ThemeToggle />
       <Omikuji />
+      <InkCursorTrail />
+      <DarumaButton />
+      <OrigamiCrane />
 
       {/* Hero Section - Sakura Fall */}
       <SakuraHero />
@@ -29,6 +38,9 @@ export default function Home() {
 
       {/* Japanese Cultural Symbols */}
       <FloatingSymbols />
+
+      {/* Course Selection - Bento Box */}
+      <BentoBox />
 
       {/* Teacher Introduction - Nat San */}
       <TeacherSection />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Sawarabi_Mincho } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const sansJP = Noto_Sans_JP({
   variable: "--font-sans-jp",
@@ -36,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="th" className={`${sansJP.variable} ${mincho.variable}`}>
       <body className="antialiased washi-pattern">
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
