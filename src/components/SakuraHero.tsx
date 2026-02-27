@@ -77,7 +77,7 @@ export default function SakuraHero() {
             id="hero"
             className="relative h-screen flex items-center justify-center overflow-hidden"
             style={{
-                background: "linear-gradient(180deg, #fff0f3 0%, #ffe8ed 40%, #ffd6de 100%)",
+                background: "linear-gradient(180deg, var(--pink-light) 0%, var(--background) 40%, var(--pink-light) 100%)",
             }}
         >
             {/* Sakura Petals */}

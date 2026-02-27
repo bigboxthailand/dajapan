@@ -13,7 +13,7 @@ export default function TeacherSection() {
             id="teacher"
             className="relative min-h-screen py-20 overflow-hidden"
             style={{
-                background: "linear-gradient(180deg, #fff0f3 0%, #ffe8ed 50%, #ffd6de 100%)",
+                background: "linear-gradient(180deg, var(--background) 0%, var(--pink-light) 50%, var(--pink-soft) 100%)",
             }}
         >
             {/* Background decorative elements */}

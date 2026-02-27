@@ -71,7 +71,7 @@ export default function FujiPapercraft() {
             id="about"
             className="relative h-fit pt-20 pb-0 flex flex-col items-center justify-center overflow-hidden"
             style={{
-                background: "linear-gradient(180deg, #ffe8ed 0%, #fff0f3 40%, #ffe8ed 100%)",
+                background: "linear-gradient(180deg, var(--pink-light) 0%, var(--background) 40%, var(--pink-light) 100%)",
             }}
         >
             {/* Cloud decorations */}
@@ -113,7 +113,7 @@ export default function FujiPapercraft() {
                 <motion.div
                     className="absolute z-[1] pointer-events-none"
                     style={{
-                        top: "14%", // ขยับขึ้นตามตำแหน่งใหม่ของยอดเขา
+                        top: "18%", // ปรับให้ตรงกลางตรงกับยอดเขา
                         left: "50%",
                         translateX: "-50%",
                         translateY: "-50%",
@@ -172,7 +172,7 @@ export default function FujiPapercraft() {
                     style={{
                         scale: useTransform(assembleProgress, [0, 0.7], [0.9, 1.5]),
                         opacity: useTransform(assembleProgress, [0.05, 0.5], [0, 1]),
-                        y: useTransform(assembleProgress, [0, 0.6], [150, -160]), // เลื่อนขึ้นไปทับแดดพอดีเป๊ะ
+                        y: useTransform(assembleProgress, [0, 0.6], [150, -20]), // เลื่อนลงมาเล็กน้อยไม่ให้บังหัวข้อเกินไป
                     }}
                 >
                     <motion.div

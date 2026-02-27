@@ -30,7 +30,7 @@ export default function FloatingSymbols() {
         <section
             className="relative py-24 overflow-hidden"
             style={{
-                background: "linear-gradient(180deg, #ffe8ed 0%, #fff0f3 30%, #ffe8ed 70%, #fff0f3 100%)",
+                background: "linear-gradient(180deg, var(--pink-light) 0%, var(--background) 30%, var(--pink-light) 70%, var(--background) 100%)",
             }}
         >
             {/* Section Header */}

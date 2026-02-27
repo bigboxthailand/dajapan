@@ -10,54 +10,54 @@ const courses = [
         title: "สนทนา",
         jp: "会話コース",
         desc: "ฝึกพูดเพื่อใช้งานจริง สั่งอาหาร ถามทาง ช็อปปิ้ง",
-        icon: "/icon-tea.png",
+        bgImage: "https://images.unsplash.com/photo-1583002529023-ecabf51e39e2?auto=format&fit=crop&q=80&w=800",
         price: "฿2,900",
-        color: "#5a7d37", // Matcha
+        color: "#ffab91",
     },
     {
         id: "kanji",
         title: "คันจิ",
         jp: "漢字コース",
         desc: "เรียนคันจิตั้งแต่พื้นฐานจนอ่านหนังสือพิมพ์ได้",
-        icon: "/icon-brush.png",
+        bgImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=800",
         price: "฿3,500",
-        color: "#e8829a", // Sakura
+        color: "#ffcc80",
     },
     {
         id: "grammar",
         title: "ไวยากรณ์",
         jp: "文法コース",
         desc: "เข้าใจโครงสร้างภาษาอย่างลึก เตรียมสอบ JLPT",
-        icon: "/icon-fan.png",
+        bgImage: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&q=80&w=800",
         price: "฿3,200",
-        color: "#4a3728", // Wood
+        color: "#a5d6a7",
     },
     {
         id: "culture",
         title: "วัฒนธรรม",
         jp: "文化コース",
         desc: "เรียนรู้ขนบธรรมเนียม มารยาท และเทศกาลญี่ปุ่น",
-        icon: "/icon-doll.png",
+        bgImage: "https://images.unsplash.com/photo-1528164344705-47542687000d?auto=format&fit=crop&q=80&w=800",
         price: "฿2,500",
-        color: "#ffb7c5", // Sakura Light
+        color: "#f48fb1",
     },
     {
         id: "business",
         title: "ธุรกิจ",
         jp: "ビジネスコース",
         desc: "ภาษาญี่ปุ่นสำหรับการทำงาน เขียนอีเมล ประชุม",
-        icon: "/icon-coin.png",
+        bgImage: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&q=80&w=800",
         price: "฿4,500",
-        color: "#8b5a2b", // Wood Light
+        color: "#90caf9",
     },
     {
         id: "travel",
         title: "ท่องเที่ยว",
         jp: "旅行コース",
         desc: "ภาษาญี่ปุ่นสำหรับเที่ยวญี่ปุ่น อ่านป้าย สั่งอาหาร",
-        icon: "/icon-pagoda.png",
+        bgImage: "https://images.unsplash.com/photo-1490761668535-3149d28a401e?auto=format&fit=crop&q=80&w=800",
         price: "฿1,900",
-        color: "#d4896b", // Paper/Clay
+        color: "#ce93d8",
     },
 ];
 
@@ -80,7 +80,7 @@ export default function BentoBox() {
             id="courses"
             className="relative py-20 overflow-hidden"
             style={{
-                background: "linear-gradient(180deg, #fff0f3 0%, #ffe8ed 50%, #fff0f3 100%)",
+                background: "linear-gradient(180deg, var(--background) 0%, var(--pink-light) 50%, var(--background) 100%)",
             }}
         >
             {/* Section header */}
@@ -134,92 +134,75 @@ export default function BentoBox() {
                                 <motion.button
                                     key={course.id}
                                     onClick={() => toggleCourse(course.id)}
-                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    initial={{ opacity: 0, scale: 0.9 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.5, delay: i * 0.1 }}
                                     viewport={{ once: true }}
-                                    whileHover={{ scale: 1.02, y: -4 }}
+                                    whileHover={{ y: -8 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="relative rounded-xl p-4 md:p-6 text-left cursor-pointer transition-all overflow-hidden group shadow-md"
+                                    className="relative h-64 md:h-80 rounded-xl overflow-hidden cursor-pointer group shadow-2xl border-4"
                                     style={{
-                                        background: isSelected
-                                            ? `linear-gradient(135deg, white, ${course.color}11)`
-                                            : "white",
-                                        backgroundImage: isSelected
-                                            ? `url('https://www.transparenttextures.com/patterns/natural-paper.png')` // Washi texture
-                                            : `url('https://www.transparenttextures.com/patterns/natural-paper.png')`,
-                                        border: isSelected
-                                            ? `3px solid ${course.color}`
-                                            : "1px solid rgba(139, 90, 43, 0.15)",
+                                        borderColor: isSelected ? course.color : "#2a0c0a",
                                     }}
                                 >
-                                    {/* Japanese Background Pattern Overlay */}
-                                    <div
-                                        className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity pointer-events-none"
-                                        style={{
-                                            backgroundImage: "url('https://www.transparenttextures.com/patterns/seigaiha.png')", // Japanese wave pattern
-                                            backgroundSize: "100px",
-                                        }}
-                                    />
+                                    {/* Background Image with Dark Overlay */}
+                                    <div className="absolute inset-0 z-0">
+                                        <Image
+                                            src={course.bgImage}
+                                            alt={course.title}
+                                            fill
+                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                        />
+                                        <div
+                                            className="absolute inset-0 transition-opacity duration-300"
+                                            style={{
+                                                background: isSelected
+                                                    ? `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8))`
+                                                    : `linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9))`
+                                            }}
+                                        />
+                                    </div>
 
-                                    {/* Selected indicator (Hanko style) */}
+                                    {/* Japanese Stamp for Selection */}
                                     {isSelected && (
                                         <motion.div
                                             initial={{ scale: 0, rotate: -20 }}
                                             animate={{ scale: 1, rotate: 0 }}
-                                            className="absolute top-2 right-2 w-8 h-8 rounded-sm border-2 flex items-center justify-center font-bold text-xs shadow-sm z-10"
-                                            style={{
-                                                borderColor: course.color,
-                                                color: course.color,
-                                                backgroundColor: "white"
-                                            }}
+                                            className="absolute top-4 right-4 w-10 h-10 border-2 border-white rounded-sm flex items-center justify-center font-bold text-white z-20 bg-red-600 shadow-lg"
                                         >
-                                            済
+                                            選
                                         </motion.div>
                                     )}
 
-                                    {/* Icon container with fixed height for alignment */}
-                                    <div className="h-28 flex items-center justify-center mb-4 w-full relative z-10">
+                                    {/* Content Centered on Background */}
+                                    <div className="relative z-10 h-full flex flex-col items-center justify-center p-6 text-center">
                                         <motion.div
-                                            animate={isSelected ? { rotate: [0, -5, 5, -3, 0], scale: [1, 1.1, 1] } : {}}
-                                            transition={{ duration: 0.5 }}
-                                            className="relative"
-                                        >
-                                            <Image
-                                                src={course.icon}
-                                                alt={course.title}
-                                                width={100}
-                                                height={100}
-                                                className="w-20 md:w-24 h-auto object-contain drop-shadow-xl"
-                                            />
-                                        </motion.div>
-                                    </div>
+                                            className="mb-2 w-8 h-[2px] bg-white opacity-40"
+                                            animate={isSelected ? { width: 40, opacity: 1 } : {}}
+                                        />
 
-                                    {/* Course info */}
-                                    <div className="relative z-10">
-                                        <h3
-                                            className="font-bold text-lg md:text-xl mb-1 flex items-center gap-2"
-                                            style={{ color: "var(--wood)" }}
-                                        >
-                                            <span className="w-1 h-5 bg-red-600 opacity-20" />
+                                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-1 drop-shadow-lg" style={{ fontFamily: "var(--font-mincho)" }}>
                                             {course.title}
                                         </h3>
-                                        <p
-                                            className="text-xs mb-2 font-medium"
-                                            style={{ fontFamily: "var(--font-mincho)", color: course.color }}
-                                        >
+
+                                        <p className="text-sm font-medium mb-3 tracking-widest text-white/90" style={{ color: course.color }}>
                                             {course.jp}
                                         </p>
-                                        <p className="text-xs mb-3 opacity-60 line-clamp-2 h-8 hidden md:block" style={{ color: "var(--wood-light)" }}>
+
+                                        <p className="text-xs text-white/70 line-clamp-3 mb-4 max-w-[180px] leading-relaxed">
                                             {course.desc}
                                         </p>
-                                        <div className="flex items-center justify-between mt-auto pt-2 border-t border-dashed border-gray-100">
-                                            <p className="font-bold text-base" style={{ color: course.color }}>
+
+                                        <div className="mt-auto">
+                                            <p className="text-xl font-bold text-white tracking-wider">
                                                 {course.price}
                                             </p>
-                                            <span className="text-[10px] uppercase tracking-tighter opacity-30">Course</span>
+                                            <div className="h-[1px] w-full bg-white/20 mt-1" />
                                         </div>
                                     </div>
+
+                                    {/* Hover Shine Effect */}
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
                                 </motion.button>
                             );
                         })}
@@ -251,10 +234,12 @@ export default function BentoBox() {
                                             key={id}
                                             initial={{ scale: 0 }}
                                             animate={{ scale: 1 }}
-                                            className="flex items-center gap-1 px-3 py-1 rounded-full text-sm"
-                                            style={{ background: `${course.color}20`, color: course.color }}
+                                            className="flex items-center gap-2 px-3 py-1 rounded-full text-sm border"
+                                            style={{ background: `${course.color}10`, color: course.color, borderColor: `${course.color}30` }}
                                         >
-                                            <Image src={course.icon} alt="" width={20} height={20} className="w-5 h-5" />
+                                            <div className="relative w-5 h-5 rounded-full overflow-hidden border border-white/20">
+                                                <Image src={course.bgImage} alt="" fill className="object-cover" />
+                                            </div>
                                             {course.title}
                                         </motion.div>
                                     );

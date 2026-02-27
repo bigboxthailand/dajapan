@@ -20,10 +20,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     const toggle = () => {
         setIsTransitioning(true);
+        // Change mode immediately so visuals update, but ink splash covers it
+        setMode((prev) => (prev === "day" ? "night" : "day"));
         setTimeout(() => {
-            setMode((prev) => (prev === "day" ? "night" : "day"));
-            setTimeout(() => setIsTransitioning(false), 800);
-        }, 500);
+            setIsTransitioning(false);
+        }, 1200);
     };
 
     useEffect(() => {
