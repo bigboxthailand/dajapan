@@ -69,7 +69,7 @@ export default function FujiPapercraft() {
         <section
             ref={sectionRef}
             id="about"
-            className="relative min-h-screen py-20 flex flex-col items-center justify-center overflow-hidden"
+            className="relative h-fit pt-20 pb-0 flex flex-col items-center justify-center overflow-hidden"
             style={{
                 background: "linear-gradient(180deg, #ffe8ed 0%, #fff0f3 40%, #ffe8ed 100%)",
             }}
@@ -107,13 +107,13 @@ export default function FujiPapercraft() {
             </div>
 
             {/* Papercraft Mt. Fuji using real image - GIGANTIC VERSION */}
-            <div className="relative w-full max-w-[1400px] mx-auto h-[800px] md:h-[1100px] mt-10">
+            <div className="relative w-full max-w-[1400px] mx-auto h-[500px] md:h-[800px] mt-10">
 
                 {/* ===== New Rising Sun with Rays - Centered at Peak - Smaller & Slower ===== */}
                 <motion.div
                     className="absolute z-[1] pointer-events-none"
                     style={{
-                        top: "18%", // ปรับให้ตรงกลางตรงกับยอดเขา
+                        top: "14%", // ขยับขึ้นตามตำแหน่งใหม่ของยอดเขา
                         left: "50%",
                         translateX: "-50%",
                         translateY: "-50%",
@@ -172,7 +172,7 @@ export default function FujiPapercraft() {
                     style={{
                         scale: useTransform(assembleProgress, [0, 0.7], [0.9, 1.5]),
                         opacity: useTransform(assembleProgress, [0.05, 0.5], [0, 1]),
-                        y: useTransform(assembleProgress, [0, 0.6], [150, -50]), // เลื่อนขึ้นไปบังแดด
+                        y: useTransform(assembleProgress, [0, 0.6], [150, -160]), // เลื่อนขึ้นไปทับแดดพอดีเป๊ะ
                     }}
                 >
                     <motion.div
