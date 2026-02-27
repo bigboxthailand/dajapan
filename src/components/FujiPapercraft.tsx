@@ -106,18 +106,18 @@ export default function FujiPapercraft() {
                 </motion.h2>
             </div>
 
-            {/* Papercraft Mt. Fuji using real image */}
-            <div className="relative w-full max-w-3xl mx-auto h-[400px] md:h-[500px]">
+            {/* Papercraft Mt. Fuji using real image - ENLARGED */}
+            <div className="relative w-full max-w-6xl mx-auto h-[600px] md:h-[800px]">
 
-                {/* ===== Rising Sun behind Mt. Fuji ===== */}
+                {/* ===== Rising Sun behind Mt. Fuji - No BG/Glow ===== */}
                 <motion.div
                     className="absolute z-[1] pointer-events-none"
                     style={{
-                        top: "5%",
+                        top: "0%",
                         left: "50%",
                         translateX: "-50%",
                     }}
-                    initial={{ opacity: 0, y: 80, scale: 0.3 }}
+                    initial={{ opacity: 0, y: 120, scale: 0.3 }}
                     whileInView={{
                         opacity: 1,
                         y: 0,
@@ -127,46 +127,28 @@ export default function FujiPapercraft() {
                         duration: 1.8,
                         delay: 0.3,
                         ease: "easeOut",
-                        // Bounce effect
                         type: "spring",
-                        stiffness: 100,
-                        damping: 12,
+                        stiffness: 80,
+                        damping: 15,
                     }}
                     viewport={{ once: true }}
                 >
-                    {/* Golden glow behind sun */}
-                    <motion.div
-                        className="absolute inset-0 rounded-full"
-                        style={{
-                            width: 200,
-                            height: 200,
-                            background: "radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,165,0,0.1) 50%, transparent 70%)",
-                            transform: "translate(-50%, -50%)",
-                            left: "50%",
-                            top: "50%",
-                        }}
-                        animate={{
-                            scale: [1, 1.2, 1],
-                            opacity: [0.5, 0.8, 0.5],
-                        }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    />
                     <Image
                         src="/sun.png"
                         alt="Rising Sun"
-                        width={180}
-                        height={180}
-                        className="w-32 md:w-44 h-auto drop-shadow-lg"
+                        width={300}
+                        height={300}
+                        className="w-48 md:w-64 h-auto drop-shadow-lg"
                     />
                 </motion.div>
 
-                {/* ===== Hawk flying across ===== */}
+                {/* ===== Hawks flying from Right to Left ===== */}
                 <motion.div
                     className="absolute z-20 pointer-events-none"
-                    style={{ top: "8%", left: "-15%" }}
-                    initial={{ x: "-100%", opacity: 0 }}
+                    style={{ top: "8%", right: "-15%" }}
+                    initial={{ x: "0%", opacity: 0 }}
                     whileInView={{
-                        x: ["0%", "400%", "800%"],
+                        x: ["0%", "-400%", "-800%"],
                         y: [0, -40, -20, -60, -30],
                         opacity: [0, 1, 1, 1, 0],
                     }}
@@ -182,17 +164,16 @@ export default function FujiPapercraft() {
                         alt="Hawk flying"
                         width={100}
                         height={100}
-                        className="w-16 md:w-24 h-auto"
+                        className="w-16 md:w-24 h-auto" // Removed scale flip
                     />
                 </motion.div>
 
-                {/* Second hawk (smaller, delayed) */}
                 <motion.div
                     className="absolute z-20 pointer-events-none"
-                    style={{ top: "15%", left: "-10%" }}
-                    initial={{ x: "-100%", opacity: 0 }}
+                    style={{ top: "18%", right: "-10%" }}
+                    initial={{ x: "0%", opacity: 0 }}
                     whileInView={{
-                        x: ["0%", "500%", "1000%"],
+                        x: ["0%", "-500%", "-1000%"],
                         y: [0, -30, -10, -50, -20],
                         opacity: [0, 0.7, 0.7, 0.7, 0],
                     }}
@@ -208,27 +189,26 @@ export default function FujiPapercraft() {
                         alt=""
                         width={60}
                         height={60}
-                        className="w-10 md:w-14 h-auto opacity-70"
+                        className="w-10 md:w-14 h-auto opacity-70" // Removed scale flip
                     />
                 </motion.div>
 
-                {/* Mt. Fuji image - assembles with bounce */}
+                {/* Mt. Fuji image - even larger assembly */}
                 <motion.div
                     className="absolute inset-0 flex items-center justify-center z-10"
                     style={{
-                        scale: useTransform(assembleProgress, [0, 0.7], [0.7, 1]),
+                        scale: useTransform(assembleProgress, [0, 0.7], [0.8, 1.2]),
                         opacity: useTransform(assembleProgress, [0.05, 0.5], [0, 1]),
-                        y: useTransform(assembleProgress, [0, 0.6], [80, 0]),
+                        y: useTransform(assembleProgress, [0, 0.6], [100, 0]),
                     }}
                 >
-                    {/* Bounce effect on Fuji when it appears */}
                     <motion.div
-                        initial={{ scale: 0.8, y: 40 }}
-                        whileInView={{ scale: 1, y: 0 }}
+                        initial={{ scale: 0.8, y: 60 }}
+                        whileInView={{ scale: 1.1, y: 0 }}
                         transition={{
                             type: "spring",
-                            stiffness: 120,
-                            damping: 10,
+                            stiffness: 100,
+                            damping: 12,
                             delay: 0.5,
                         }}
                         viewport={{ once: true }}
@@ -236,9 +216,9 @@ export default function FujiPapercraft() {
                         <Image
                             src="/fuji.png"
                             alt="Papercraft Mount Fuji"
-                            width={700}
-                            height={500}
-                            className="w-[85%] md:w-[75%] h-auto drop-shadow-2xl mx-auto"
+                            width={1200}
+                            height={900}
+                            className="w-[100%] md:w-[120%] h-auto drop-shadow-2xl mx-auto"
                             priority
                         />
                     </motion.div>
