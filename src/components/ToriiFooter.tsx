@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
+import { useTheme } from "./ThemeProvider";
 
 export default function ToriiFooter() {
+    const { mode } = useTheme();
+    const isNight = mode === "night";
     const [email, setEmail] = useState("");
     const [subscribed, setSubscribed] = useState(false);
 
@@ -32,7 +35,9 @@ export default function ToriiFooter() {
                 <div
                     className="absolute inset-0"
                     style={{
-                        background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(74,55,40,0.7) 60%, rgba(74,55,40,0.95) 100%)",
+                        background: isNight
+                            ? "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(74,55,40,0.7) 60%, rgba(26,15,46,0.95) 100%)"
+                            : "linear-gradient(180deg, rgba(255,240,243,0) 0%, rgba(255,240,243,0.5) 60%, rgba(255,240,243,1) 100%)",
                     }}
                 />
 
@@ -43,8 +48,8 @@ export default function ToriiFooter() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
-                        className="text-white/70 text-base md:text-lg mb-2"
-                        style={{ fontFamily: "var(--font-mincho)" }}
+                        className="text-base md:text-lg mb-2"
+                        style={{ fontFamily: "var(--font-mincho)", color: isNight ? "rgba(255,255,255,0.7)" : "var(--wood)" }}
                     >
                         門をくぐれば、新しい自分に出会える
                     </motion.p>
@@ -53,8 +58,8 @@ export default function ToriiFooter() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="text-white text-2xl md:text-4xl font-bold text-center mb-3"
-                        style={{ fontFamily: "var(--font-mincho)" }}
+                        className="text-2xl md:text-4xl font-bold text-center mb-3"
+                        style={{ fontFamily: "var(--font-mincho)", color: isNight ? "white" : "var(--wood)" }}
                     >
                         ก้าวข้ามประตูโทริอิ สู่ตัวตนใหม่ของคุณ
                     </motion.h2>
@@ -63,7 +68,8 @@ export default function ToriiFooter() {
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                         viewport={{ once: true }}
-                        className="text-white/50 text-sm text-center max-w-lg"
+                        className="text-sm text-center max-w-lg"
+                        style={{ color: isNight ? "rgba(255,255,255,0.5)" : "var(--wood-light)" }}
                     >
                         เหมือนเสาโทริอิที่เป็นประตูเชื่อมโลกมนุษย์กับสิ่งศักดิ์สิทธิ์
                         การเรียนภาษาจะเปิดประตูสู่โลกใหม่ที่คุณไม่เคยสัมผัสมาก่อน
@@ -74,7 +80,11 @@ export default function ToriiFooter() {
             {/* Newsletter + Footer Content */}
             <div
                 className="relative py-16 px-6"
-                style={{ background: "linear-gradient(180deg, #120b08, #000000)" }}
+                style={{
+                    background: isNight
+                        ? "linear-gradient(180deg, #120b08, #000000)"
+                        : "linear-gradient(180deg, #fffcf5, #ffffff)"
+                }}
             >
                 {/* Newsletter Section */}
                 <motion.div
@@ -86,12 +96,12 @@ export default function ToriiFooter() {
                 >
                     <span className="text-3xl block mb-4">🕊️</span>
                     <h3
-                        className="text-xl md:text-2xl text-white font-bold mb-3"
-                        style={{ fontFamily: "var(--font-mincho)" }}
+                        className="text-xl md:text-2xl font-bold mb-3"
+                        style={{ fontFamily: "var(--font-mincho)", color: isNight ? "white" : "var(--wood)" }}
                     >
                         รับบทเรียนสั้นๆ และคำศัพท์ประจำวัน
                     </h3>
-                    <p className="text-white/50 text-sm mb-6">
+                    <p className="text-sm mb-6" style={{ color: isNight ? "rgba(255,255,255,0.5)" : "var(--wood-light)" }}>
                         ส่งตรงถึงนกพิราบสื่อสารของคุณ (อีเมล) 📧
                     </p>
 
@@ -100,10 +110,13 @@ export default function ToriiFooter() {
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             className="p-4 rounded-2xl"
-                            style={{ background: "rgba(90,125,55,0.2)", border: "1px solid var(--matcha)" }}
+                            style={{
+                                background: isNight ? "rgba(90,125,55,0.2)" : "rgba(90,125,55,0.1)",
+                                border: "1px solid var(--matcha)"
+                            }}
                         >
-                            <p className="text-white text-lg">🎉 ありがとうございます!</p>
-                            <p className="text-white/60 text-sm">ขอบคุณค่ะ! เราจะส่งบทเรียนให้คุณเร็วๆ นี้</p>
+                            <p className="text-lg" style={{ color: isNight ? "white" : "var(--matcha)" }}>🎉 ありがとうございます!</p>
+                            <p className="text-sm" style={{ color: isNight ? "rgba(255,255,255,0.6)" : "var(--wood-light)" }}>ขอบคุณค่ะ! เราจะส่งบทเรียนให้คุณเร็วๆ นี้</p>
                         </motion.div>
                     ) : (
                         <form onSubmit={handleSubscribe} className="flex gap-3 max-w-md mx-auto">
@@ -116,9 +129,9 @@ export default function ToriiFooter() {
                                     required
                                     className="w-full px-5 py-3 rounded-full text-sm outline-none focus:ring-2 transition-all"
                                     style={{
-                                        background: "rgba(255,255,255,0.1)",
-                                        border: "2px solid rgba(255,255,255,0.15)",
-                                        color: "white",
+                                        background: isNight ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)",
+                                        border: `2px solid ${isNight ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.1)"}`,
+                                        color: isNight ? "white" : "var(--wood)",
                                     }}
                                 />
                                 {/* Brush stroke decoration */}
@@ -133,8 +146,9 @@ export default function ToriiFooter() {
                                 type="submit"
                                 className="px-6 py-3 rounded-full text-sm font-medium cursor-pointer transition-all hover:scale-105"
                                 style={{
-                                    background: "linear-gradient(135deg, var(--sakura), var(--sakura-deep, #e8829a))",
-                                    color: "var(--wood)",
+                                    background: "linear-gradient(135deg, var(--sakura), var(--sakura-deep))",
+                                    color: isNight ? "var(--wood)" : "white",
+                                    boxShadow: isNight ? "none" : "0 4px 12px rgba(232, 130, 154, 0.3)"
                                 }}
                             >
                                 ส่งให้ฉัน ✉️
@@ -165,7 +179,7 @@ export default function ToriiFooter() {
                             },
                         ].map((section, i) => (
                             <div key={i}>
-                                <h4 className="text-white/80 font-bold mb-3 text-sm uppercase tracking-wide">
+                                <h4 className="font-bold mb-3 text-sm uppercase tracking-wide" style={{ color: isNight ? "rgba(255,255,255,0.8)" : "var(--wood)" }}>
                                     {section.title}
                                 </h4>
                                 <ul className="space-y-2">
@@ -173,7 +187,8 @@ export default function ToriiFooter() {
                                         <li key={j}>
                                             <a
                                                 href="#"
-                                                className="text-white/40 hover:text-white/80 transition-colors text-sm"
+                                                className="transition-colors text-sm"
+                                                style={{ color: isNight ? "rgba(255,255,255,0.4)" : "var(--wood-light)" }}
                                             >
                                                 {link}
                                             </a>
@@ -185,15 +200,15 @@ export default function ToriiFooter() {
                     </div>
 
                     {/* Divider */}
-                    <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-                        <p className="text-white/30 text-sm">
+                    <div className="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderColor: isNight ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)" }}>
+                        <p className="text-sm" style={{ color: isNight ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.4)" }}>
                             © 2025 สอนญี่ปุ่น.com — สงวนลิขสิทธิ์
                         </p>
                         <div className="flex gap-6">
-                            <a href="#" className="text-white/30 hover:text-white/60 text-sm transition-colors">
+                            <a href="#" className="text-sm transition-colors" style={{ color: isNight ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.4)" }}>
                                 นโยบายความเป็นส่วนตัว
                             </a>
-                            <a href="#" className="text-white/30 hover:text-white/60 text-sm transition-colors">
+                            <a href="#" className="text-sm transition-colors" style={{ color: isNight ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.4)" }}>
                                 เงื่อนไขการใช้งาน
                             </a>
                         </div>
