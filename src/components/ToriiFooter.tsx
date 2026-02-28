@@ -74,7 +74,7 @@ export default function ToriiFooter() {
             {/* Newsletter + Footer Content */}
             <div
                 className="relative py-16 px-6"
-                style={{ background: "linear-gradient(180deg, rgba(74,55,40,0.95), #2a1a10)" }}
+                style={{ background: "linear-gradient(180deg, #120b08, #000000)" }}
             >
                 {/* Newsletter Section */}
                 <motion.div

@@ -7,12 +7,16 @@ import Image from "next/image";
 // Plus additional Japanese cultural symbols
 
 const symbols = [
-    { src: "/sun.png", alt: "พระอาทิตย์อุทัย", label: "日の丸", size: 120 },
-    { src: "/hawk.png", alt: "นกเหยี่ยว", label: "鷹", size: 150 },
-    { src: "/eggplant.png", alt: "มะเขือม่วง", label: "茄子", size: 90 },
-    { src: "/ocean.png", alt: "คลื่นทะเล", label: "海", size: 140 },
-    { src: "/sushi.png", alt: "ซูชิ", label: "寿司", size: 120 },
-    { src: "/sakura-blossom.png", alt: "ดอกซากุระ", label: "桜", size: 80 },
+    { src: "/sun.png?v=refresh", alt: "พระอาทิตย์อุทัย", label: "日の丸", size: 120 },
+    { src: "/hawk.png?v=refresh", alt: "นกเหยี่ยว", label: "鷹", size: 150 },
+    { src: "/eggplant.png?v=refresh", alt: "มะเขือม่วง", label: "茄子", size: 90 },
+    { src: "/sumo.png?v=refresh", alt: "ซูโม่", label: "相撲", size: 130 },
+    { src: "/pikachu.png?v=refresh", alt: "ปิกาจู", label: "ピカチュウ", size: 110 },
+    { src: "/daruma.png?v=refresh", alt: "ดารุมะ", label: "達磨", size: 100 },
+    { src: "/shinkansen.png?v=refresh", alt: "ชินคันเซ็น", label: "新幹線", size: 150 },
+    { src: "/ocean.png?v=refresh", alt: "คลื่นทะเล", label: "海", size: 140 },
+    { src: "/sushi.png?v=refresh", alt: "ซูชิ", label: "寿司", size: 120 },
+    { src: "/sakura-blossom.png?v=refresh", alt: "ดอกซากุระ", label: "桜", size: 80 },
 ];
 
 // Fixed positions for each symbol to avoid hydration mismatches
@@ -60,7 +64,7 @@ export default function FloatingSymbols() {
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                     viewport={{ once: true }}
-                    className="text-sm md:text-base max-w-2xl mx-auto opacity-60"
+                    className="text-sm md:text-base max-w-2xl mx-auto font-medium"
                     style={{ color: "var(--wood-light)" }}
                 >
                     ญี่ปุ่นมีสัญลักษณ์มากมายที่สะท้อนวัฒนธรรมอันล้ำค่า
@@ -69,7 +73,7 @@ export default function FloatingSymbols() {
             </div>
 
             {/* Symbol Cards Grid */}
-            <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-8 relative z-10">
+            <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 relative z-10">
                 {symbols.map((symbol, i) => (
                     <motion.div
                         key={i}
@@ -77,71 +81,80 @@ export default function FloatingSymbols() {
                         whileInView={{ opacity: 1, scale: 1, y: 0 }}
                         whileHover={{
                             y: -10,
+                            scale: 1.05,
                             boxShadow: "0 20px 25px -5px rgba(232, 130, 154, 0.2)",
                         }}
-                        transition={{ duration: 0.6, delay: (positions[i]?.delay || 0) }}
+                        transition={{ duration: 0.8, delay: i * 0.1 }}
                         viewport={{ once: true }}
-                        className="relative flex flex-col items-center p-6 rounded-sm cursor-default group"
+                        className="relative flex flex-col items-center justify-center p-8 cursor-default group transition-all duration-500 overflow-visible h-[320px] md:h-[350px]"
                         style={{
-                            background: "white",
-                            backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')", // Washi texture
-                            border: "1px solid rgba(139, 90, 43, 0.2)", // Subtle wood/paper border
-                            boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.05)",
+                            backgroundImage: "url('/cardbg.png?v=2')",
+                            backgroundSize: "contain",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
                         }}
                     >
-                        {/* Hanko-style accent (Red Japanese stamp feel) */}
-                        <div className="absolute top-3 right-3 w-6 h-6 border-2 border-red-600 rounded-sm opacity-20 group-hover:opacity-60 transition-opacity flex items-center justify-center text-[10px] font-bold text-red-600">
-                            印
-                        </div>
+                        {/* No more extra borders or backgrounds here */}
 
-                        {/* Image Container with fixed height for alignment */}
-                        <div className="h-40 flex items-center justify-center mb-6 w-full relative">
-                            {/* Decorative traditional circle background */}
-                            <div className="absolute inset-0 bg-red-50 rounded-full scale-75 opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
 
-                            <div className="relative z-10" style={{ width: symbol.size, height: symbol.size }}>
+                        {/* Image Container - Centered on the scroll */}
+                        <div className="h-24 md:h-28 flex items-center justify-center w-full relative mb-1">
+                            <motion.div
+                                className="relative z-10"
+                                style={{ width: symbol.size, height: symbol.size }}
+                                animate={{
+                                    y: [2, -6, 2],
+                                    rotate: [0, i % 2 === 0 ? 2 : -2, 0]
+                                }}
+                                transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: i * 0.2
+                                }}
+                            >
                                 <Image
                                     src={symbol.src}
                                     alt={symbol.alt}
-                                    width={200}
-                                    height={200}
-                                    className="w-full h-full object-contain filter drop-shadow-md"
+                                    width={180}
+                                    height={180}
+                                    className="w-full h-full object-contain filter drop-shadow-lg"
                                 />
-                            </div>
+                            </motion.div>
                         </div>
 
-                        {/* Label Container - Flex grow ensures columns line up */}
-                        <div className="w-full flex flex-col items-center">
-                            {/* Red vertical decorative line */}
-                            <div className="w-1 h-4 bg-red-600 mb-3 opacity-30 group-hover:opacity-100 transition-opacity" />
-
+                        {/* Label Container - Pushed down to the bottom area of the scroll */}
+                        <div className="w-full flex flex-col items-center relative pb-8 z-10">
                             <h3
-                                className="text-2xl font-bold mb-1"
-                                style={{ fontFamily: "var(--font-mincho)", color: "var(--wood)" }}
+                                className="text-lg md:text-xl font-black mb-1 tracking-tight"
+                                style={{
+                                    fontFamily: "var(--font-mincho)",
+                                    color: "var(--wood)",
+                                }}
                             >
                                 {symbol.label}
                             </h3>
                             <p
-                                className="text-sm font-medium opacity-50 tracking-wide"
-                                style={{ color: "var(--wood-light)" }}
+                                className="text-[10px] md:text-xs font-bold tracking-widest uppercase"
+                                style={{ color: "var(--matcha)" }}
                             >
                                 {symbol.alt}
                             </p>
                         </div>
 
-                        {/* Washi border bottom accent */}
-                        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-200 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        {/* Traditional subtle texture overlay on hover */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-sm" />
                     </motion.div>
                 ))}
             </div>
 
             {/* Background floating sakura branches */}
             <div className="absolute top-0 right-0 w-48 md:w-72 opacity-15 pointer-events-none">
-                <Image src="/sakura-branch.png" alt="" width={400} height={300} className="w-full" />
+                <Image src="/sakura-branch.png?v=upd" alt="" width={400} height={300} className="w-full" />
             </div>
             <div className="absolute bottom-0 left-0 w-40 md:w-60 opacity-10 pointer-events-none rotate-180">
-                <Image src="/sakura-branch.png" alt="" width={400} height={300} className="w-full" />
+                <Image src="/sakura-branch.png?v=upd" alt="" width={400} height={300} className="w-full" />
             </div>
-        </section>
+        </section >
     );
 }

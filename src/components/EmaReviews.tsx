@@ -64,34 +64,50 @@ function EmaCard({
     return (
         <motion.div
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0, rotate: -2 + index * 1.5 }}
-            whileHover={{ rotate: 0, scale: 1.05, y: -8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{
+                y: -5,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+            }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="flex-shrink-0 w-64 cursor-default"
+            className="flex-shrink-0 w-64 md:w-72 cursor-grab active:cursor-grabbing px-2"
         >
-            {/* Hanging string */}
-            <div className="flex justify-center mb-0">
-                <div className="w-0.5 h-10" style={{ background: "#b8860b" }} />
+            {/* Hanging string - with subtle physics animation */}
+            <div className="flex justify-center mb-0 relative">
+                <motion.div
+                    className="w-0.5 h-12 origin-top"
+                    style={{ background: "linear-gradient(to bottom, #4a2c2a, #b8860b)" }}
+                    animate={{ rotate: [-1, 1, -1] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
+                />
+                {/* Knot */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#4a2c2a] z-20" />
             </div>
 
             {/* Ema wooden tablet */}
-            <div
-                className="relative rounded-lg p-5 shadow-lg"
+            <motion.div
+                className="relative rounded-lg p-6 shadow-xl border-2 overflow-hidden group"
                 style={{
-                    background: "linear-gradient(180deg, #f5deb3, #deb887, #d2b48c)",
-                    border: "2px solid #b8860b",
-                    minHeight: "180px",
+                    background: "var(--washi)",
+                    backgroundColor: "rgba(245, 222, 179, 0.95)", // More solid base for readability
+                    backgroundImage: "url('https://www.transparenttextures.com/patterns/natural-paper.png')",
+                    borderColor: "#b8860b",
+                    minHeight: "220px",
+                }}
+                whileHover={{
+                    rotate: [-1, 1, -0.5, 0.5, 0],
+                    transition: { duration: 0.5 }
                 }}
             >
-                {/* Wood grain texture lines - using fixed angles */}
-                <div className="absolute inset-0 overflow-hidden rounded-lg opacity-10">
+                {/* Wood Grain - Enhanced visibility */}
+                <div className="absolute inset-0 overflow-hidden rounded-lg opacity-[0.15] pointer-events-none">
                     {angles.map((angle, i) => (
                         <div
                             key={i}
-                            className="absolute w-full h-[1px]"
+                            className="absolute w-full h-[1.5px]"
                             style={{
-                                top: `${12 + i * 12}%`,
+                                top: `${10 + i * 15}%`,
                                 backgroundColor: "#8B4513",
                                 transform: `rotate(${angle}deg)`,
                             }}
@@ -99,54 +115,65 @@ function EmaCard({
                     ))}
                 </div>
 
-                {/* Roof triangle */}
+                {/* Ambient glow in dark mode */}
+                <div className="absolute inset-0 bg-white/5 opacity-0 dark:group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+                {/* Roof triangle - Dynamic height */}
                 <div
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6"
+                    className="absolute -top-1 left-1/2 -translate-x-1/2 w-16 h-8 z-20"
                     style={{
-                        background: "linear-gradient(180deg, #8B0000, #B22222)",
+                        background: "linear-gradient(135deg, #8B0000 0%, #B22222 50%, #630000 100%)",
                         clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+                        filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.3))"
                     }}
                 />
 
-                {/* Content */}
-                <div className="relative z-10 pt-2">
-                    <div className="flex items-center gap-2 mb-3">
-                        <span className="text-2xl">{review.avatar}</span>
+                {/* Header Section */}
+                <div className="relative z-20 pt-4">
+                    <div className="flex items-center gap-3 mb-4">
+                        <motion.span
+                            className="text-3xl filter drop-shadow-sm"
+                            whileHover={{ scale: 1.2, rotate: 10 }}
+                        >
+                            {review.avatar}
+                        </motion.span>
                         <div>
-                            <p className="font-bold text-sm" style={{ color: "#4a2c2a" }}>
+                            <p className="font-bold text-base md:text-lg mb-0.5 text-[#4a2c2a] dark:text-[#2a0c0a]">
                                 {review.name}
                             </p>
                             <span
-                                className="text-xs px-2 py-0.5 rounded-full"
+                                className="text-[10px] md:text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider"
                                 style={{
-                                    background: "rgba(90,125,55,0.2)",
-                                    color: "var(--matcha)",
+                                    background: "rgba(90,125,55,0.25)", // Stronger background
+                                    border: "1px solid rgba(90,125,55,0.4)",
+                                    color: "#2d4a1e", // Darker text for visibility on light wood
                                 }}
                             >
-                                ผ่าน {review.level}
+                                JLPT {review.level}
                             </span>
                         </div>
                     </div>
 
                     <p
-                        className="text-sm leading-relaxed"
-                        style={{ color: "#4a2c2a" }}
+                        className="text-sm md:text-base leading-relaxed font-semibold italic relative text-[#3a1c1a]"
                     >
-                        「{review.text}」
+                        <span className="text-xl md:text-2xl text-red-700/40 font-serif absolute -left-2 -top-2">“</span>
+                        {review.text}
+                        <span className="text-xl md:text-2xl text-red-700/40 font-serif absolute -right-2 bottom-0">”</span>
                     </p>
                 </div>
 
-                {/* Stamp */}
-                <div
-                    className="absolute bottom-2 right-3 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold opacity-30 rotate-12"
-                    style={{
-                        border: "2px solid #e53e3e",
-                        color: "#e53e3e",
-                    }}
+                {/* Hanko Stamp - Realtime feel */}
+                <motion.div
+                    className="absolute bottom-3 right-4 w-10 h-10 rounded-sm flex items-center justify-center text-xs font-bold opacity-30 border-2 border-red-600 text-red-600 select-none"
+                    initial={{ scale: 0.8, rotate: -20 }}
+                    whileInView={{ scale: 1, rotate: 12 }}
+                    whileHover={{ scale: 1.1, opacity: 0.6, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                 >
-                    認
-                </div>
-            </div>
+                    <span style={{ transform: "scale(0.8)" }}>大日本</span>
+                </motion.div>
+            </motion.div>
         </motion.div>
     );
 }
@@ -155,61 +182,78 @@ export default function EmaReviews() {
     return (
         <section
             id="reviews"
-            className="relative py-20 overflow-hidden"
+            className="relative py-24 overflow-hidden"
             style={{
-                background: "linear-gradient(180deg, #ffe8ed 0%, #fff0f3 50%, #ffe8ed 100%)",
+                background: "linear-gradient(180deg, var(--background) 0%, var(--pink-light) 50%, var(--background) 100%)",
             }}
         >
             {/* Section header */}
-            <div className="text-center mb-16 px-6">
+            <div className="text-center mb-16 px-6 relative z-10">
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-lg md:text-xl mb-2"
+                    className="text-lg md:text-xl mb-3"
                     style={{ fontFamily: "var(--font-mincho)", color: "var(--matcha)" }}
                 >
                     絵馬 — เสียงจากนักเรียน
                 </motion.p>
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className="text-3xl md:text-5xl font-bold"
-                    style={{ fontFamily: "var(--font-mincho)", color: "var(--wood)" }}
-                >
-                    แผ่นไม้ขอพรจากผู้เรียน
-                </motion.h2>
-            </div>
-
-            {/* Hanging rail */}
-            <div className="relative max-w-7xl mx-auto px-6 mb-4">
-                <div
-                    className="absolute top-0 left-0 right-0 h-3 rounded-full"
-                    style={{
-                        background: "linear-gradient(180deg, #4a2c2a, #3a1c1a)",
-                        boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
-                    }}
-                />
-            </div>
-
-            {/* Ema cards - horizontal scroll */}
-            <div className="overflow-x-auto pb-6 pt-6">
-                <div className="flex gap-6 px-6 min-w-max max-w-7xl mx-auto">
-                    {reviews.map((review, i) => (
-                        <EmaCard key={i} review={review} index={i} />
-                    ))}
+                <div className="relative inline-block">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        viewport={{ once: true }}
+                        className="text-4xl md:text-6xl font-bold relative z-10"
+                        style={{ fontFamily: "var(--font-mincho)", color: "var(--wood)" }}
+                    >
+                        แผ่นไม้ขอพรจากผู้เรียน
+                    </motion.h2>
+                    {/* Decorative red underline */}
+                    <div className="absolute -bottom-2 left-0 w-full h-1.5 bg-red-600/20 rounded-full" />
                 </div>
             </div>
 
-            {/* Decorative cloud images */}
-            <div className="absolute top-8 right-0 w-32 md:w-48 opacity-20 pointer-events-none">
-                <Image src="/clouds.png" alt="" width={200} height={100} className="w-full" />
+            {/* Hanging rail - Enhanced with shadow and texture */}
+            <div className="relative max-w-7xl mx-auto px-6 mb-8">
+                <div
+                    className="absolute top-0 left-0 right-0 h-4 rounded-full z-20 shadow-lg"
+                    style={{
+                        background: "linear-gradient(180deg, #5c3532, #2a0c0a, #4a2c2a)",
+                        border: "1px solid rgba(255,255,255,0.1)"
+                    }}
+                />
+                {/* Rail mounting points */}
+                <div className="absolute top-0 left-10 w-4 h-6 bg-[#2a0c0a] rounded-sm -translate-y-2 z-10" />
+                <div className="absolute top-0 right-10 w-4 h-6 bg-[#2a0c0a] rounded-sm -translate-y-2 z-10" />
             </div>
-            <div className="absolute bottom-8 left-0 w-28 md:w-40 opacity-15 pointer-events-none -scale-x-100">
-                <Image src="/clouds.png" alt="" width={200} height={100} className="w-full" />
+
+            {/* Ema cards - Draggable carousel with physics */}
+            <div className="relative z-10">
+                <motion.div
+                    className="flex gap-4 md:gap-8 px-10 cursor-grab active:cursor-grabbing w-max h-[380px] pt-4"
+                    drag="x"
+                    dragConstraints={{ right: 0, left: -1400 }} // Approximated, in real app calculate based on width
+                    whileTap={{ cursor: "grabbing" }}
+                >
+                    {reviews.map((review, i) => (
+                        <EmaCard key={i} review={review} index={i} />
+                    ))}
+                </motion.div>
+
+                {/* Instructions hint */}
+                <div className="text-center mt-4 opacity-30 text-xs md:text-sm animate-pulse">
+                    ← ลากเพื่อเลื่อนดูคำชม →
+                </div>
+            </div>
+
+            {/* Decorative cloud images - Adjusted for better contrast */}
+            <div className="absolute top-10 right-0 w-48 md:w-64 opacity-20 pointer-events-none z-0">
+                <Image src="/clouds.png" alt="" width={300} height={150} className="w-full mix-blend-multiply dark:mix-blend-screen" />
+            </div>
+            <div className="absolute bottom-10 left-0 w-40 md:w-56 opacity-15 pointer-events-none z-0 -scale-x-100">
+                <Image src="/clouds.png" alt="" width={300} height={150} className="w-full mix-blend-multiply dark:mix-blend-screen" />
             </div>
         </section>
     );

@@ -23,7 +23,7 @@ export default function TeacherSection() {
 
                 {/* Sakura branch decoration */}
                 <div className="absolute top-0 right-0 w-44 md:w-72 opacity-30 pointer-events-none">
-                    <Image src="/sakura-branch.png" alt="" width={400} height={300} className="w-full h-auto" />
+                    <Image src="/sakura-branch.png?v=upd" alt="" width={400} height={300} className="w-full h-auto" />
                 </div>
 
                 {/* Seigaiha wave pattern */}
@@ -163,22 +163,24 @@ export default function TeacherSection() {
                         className="mb-6"
                     >
                         <div
-                            className="p-6 rounded-2xl relative"
+                            className="p-6 rounded-2xl relative overflow-hidden"
                             style={{
-                                background: "rgba(255, 255, 255, 0.6)",
-                                border: "1px solid rgba(90, 125, 55, 0.15)",
+                                background: "var(--washi)",
+                                border: "1px solid rgba(90, 125, 55, 0.3)",
                                 backdropFilter: "blur(10px)",
+                                boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                             }}
                         >
+                            <div className="absolute inset-0 opacity-10 washi-pattern pointer-events-none" />
                             <span
-                                className="absolute -top-4 -left-2 text-5xl opacity-15"
+                                className="absolute -top-4 -left-2 text-5xl opacity-20"
                                 style={{ fontFamily: "serif", color: "var(--matcha)" }}
                             >
                                 &ldquo;
                             </span>
                             <p
-                                className="text-base md:text-lg leading-relaxed relative z-10"
-                                style={{ color: "var(--wood-light)" }}
+                                className="text-base md:text-lg leading-relaxed relative z-10 font-medium"
+                                style={{ color: "var(--foreground)" }}
                             >
                                 ยินดีต้อนรับค่ะ! ฉัน Nat San เซนเซของคุณ สำหรับฉันแล้ว
                                 การเรียนภาษาญี่ปุ่นไม่ใช่แค่การท่องจำตำรา
@@ -223,14 +225,14 @@ export default function TeacherSection() {
                                 viewport={{ once: true }}
                                 className="p-4 rounded-2xl text-center transition-all hover:scale-105 cursor-default"
                                 style={{
-                                    background: "rgba(255, 255, 255, 0.6)",
-                                    border: "1px solid rgba(90, 125, 55, 0.15)",
+                                    background: "var(--washi)",
+                                    border: "1px solid rgba(90, 125, 55, 0.3)",
                                     backdropFilter: "blur(10px)",
                                 }}
                             >
                                 <span className="text-3xl block mb-2">{feat.icon}</span>
                                 <h4 className="font-bold text-sm md:text-base mb-1" style={{ color: "var(--wood)" }}>{feat.title}</h4>
-                                <p className="text-xs md:text-sm opacity-70" style={{ color: "var(--wood-light)" }}>{feat.desc}</p>
+                                <p className="text-xs md:text-sm" style={{ color: "var(--wood-light)" }}>{feat.desc}</p>
                             </motion.div>
                         ))}
                     </div>

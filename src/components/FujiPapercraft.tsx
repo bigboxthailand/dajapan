@@ -41,6 +41,7 @@ export default function FujiPapercraft() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: false, margin: "-20%" });
     const [hasAssembled, setHasAssembled] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -48,6 +49,13 @@ export default function FujiPapercraft() {
     });
 
     const assembleProgress = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
     useEffect(() => {
         if (isInView) {
@@ -107,38 +115,9 @@ export default function FujiPapercraft() {
             </div>
 
             {/* Papercraft Mt. Fuji using real image - GIGANTIC VERSION */}
-            <div className="relative w-full max-w-[1400px] mx-auto h-[500px] md:h-[800px] mt-10">
+            <div className="relative w-full h-[580px] md:h-[650px] mt-10">
 
-                {/* ===== New Rising Sun with Rays - Centered at Peak - Smaller & Slower ===== */}
-                <motion.div
-                    className="absolute z-[1] pointer-events-none"
-                    style={{
-                        top: "18%", // ปรับให้ตรงกลางตรงกับยอดเขา
-                        left: "50%",
-                        translateX: "-50%",
-                        translateY: "-50%",
-                    }}
-                    initial={{ opacity: 0, y: 400, scale: 0.2 }}
-                    whileInView={{
-                        opacity: 1,
-                        y: -100, // เลื่อนให้ขึ้นมาสูงกว่ายอดเขาเพื่อให้เห็น
-                        scale: 0.8, // ใหญ่ขึ้นนิดนึง
-                    }}
-                    transition={{
-                        duration: 5, // ขึ้นช้าๆ สโลว์ๆ
-                        delay: 0.4,
-                        ease: "easeOut",
-                    }}
-                    viewport={{ once: true }}
-                >
-                    <Image
-                        src="/sun.png"
-                        alt="Rising Sun with Rays"
-                        width={400}
-                        height={400}
-                        className="w-48 md:w-[300px] h-auto drop-shadow-2xl"
-                    />
-                </motion.div>
+
 
                 {/* ===== Hawks flying from Right to Left ===== */}
                 <motion.div
@@ -170,29 +149,29 @@ export default function FujiPapercraft() {
                 <motion.div
                     className="absolute inset-0 flex items-center justify-center z-10"
                     style={{
-                        scale: useTransform(assembleProgress, [0, 0.7], [0.9, 1.5]),
+                        scale: useTransform(assembleProgress, [0, 0.7], [1, 1]),
                         opacity: useTransform(assembleProgress, [0.05, 0.5], [0, 1]),
-                        y: useTransform(assembleProgress, [0, 0.6], [150, -20]), // เลื่อนลงมาเล็กน้อยไม่ให้บังหัวข้อเกินไป
+                        y: useTransform(assembleProgress, [0, 0.6], [150, isMobile ? 10 : -10]), // มือถือ 10 (สูงขึ้น 20px), desktop -10 (ต่ำลง 100px)
                     }}
                 >
                     <motion.div
-                        initial={{ scale: 0.8, y: 100 }}
-                        whileInView={{ scale: 1.4, y: 0 }}
+                        className="w-full h-full"
+                        initial={{ opacity: 0, y: 100 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{
-                            type: "spring",
-                            stiffness: 90,
-                            damping: 15,
+                            duration: 1.2,
                             delay: 0.6,
                         }}
                         viewport={{ once: true }}
                     >
-                        <Image
-                            src="/fuji.png"
-                            alt="Papercraft Mount Fuji"
-                            width={1600}
-                            height={1200}
-                            className="w-[120%] md:w-[150%] h-auto drop-shadow-2xl mx-auto"
-                            priority
+                        <video
+                            src="/fuji.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover drop-shadow-2xl"
+                            style={{ objectFit: 'cover' }}
                         />
                     </motion.div>
                 </motion.div>
@@ -213,7 +192,7 @@ export default function FujiPapercraft() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 viewport={{ once: true }}
-                className="max-w-2xl mx-auto text-center px-6 z-10"
+                className="max-w-2xl mx-auto text-center px-6 z-10 mt-8 md:mt-0"
             >
                 <p className="text-base md:text-lg leading-relaxed mb-4" style={{ color: "var(--wood-light)" }}>
                     เช่นเดียวกับภูเขาไฟฟูจิที่ยิ่งใหญ่ การใช้ภาษาต้องสร้างจากรากฐานที่มั่นคง

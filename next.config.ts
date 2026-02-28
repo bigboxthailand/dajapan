@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         hostname: "static.vecteezy.com",
       },
     ],
+    localPatterns: [
+      {
+        pathname: "/**",
+      },
+    ],
   },
 };
 

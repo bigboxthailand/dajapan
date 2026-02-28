@@ -23,7 +23,8 @@ export default function NorenTransition() {
                 <div
                     className="absolute inset-0 z-0"
                     style={{
-                        background: "linear-gradient(180deg, #ffd6de 0%, #fff0f3 50%, #ffe8ed 100%)",
+                        background: "var(--background)",
+                        backgroundImage: "radial-gradient(circle at center, var(--pink-light) 0%, var(--background) 100%)",
                     }}
                 />
 
@@ -161,18 +162,7 @@ export default function NorenTransition() {
                     </div>
                 </motion.div>
 
-                {/* Center seam decoration */}
-                <motion.div
-                    style={{ opacity: curtainOpacity }}
-                    className="absolute top-6 left-1/2 -translate-x-1/2 w-1 h-full z-30"
-                >
-                    <div
-                        className="w-full h-full"
-                        style={{
-                            background: "linear-gradient(180deg, #2a0c0a, transparent)",
-                        }}
-                    />
-                </motion.div>
+                {/* Center seam removed as requested */}
 
                 {/* Revealed content behind curtains */}
                 <div className="absolute inset-0 z-10 flex items-center justify-center">
@@ -184,7 +174,7 @@ export default function NorenTransition() {
                         className="text-center px-8"
                     >
                         <p
-                            className="text-xl md:text-2xl mb-2 opacity-70"
+                            className="text-xl md:text-2xl mb-2 opacity-80"
                             style={{ fontFamily: "var(--font-mincho)", color: "var(--matcha)" }}
                         >
                             新たな世界への扉を開く

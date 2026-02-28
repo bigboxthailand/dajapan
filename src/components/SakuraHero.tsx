@@ -95,7 +95,7 @@ export default function SakuraHero() {
                 transition={{ duration: 1.5, delay: 0.5 }}
             >
                 <Image
-                    src="/sakura-branch.png"
+                    src="/sakura-branch.png?v=upd"
                     alt="Sakura branch decoration"
                     width={400}
                     height={300}
@@ -112,7 +112,7 @@ export default function SakuraHero() {
                 transition={{ duration: 1.5, delay: 0.8 }}
             >
                 <Image
-                    src="/sakura-branch.png"
+                    src="/sakura-branch.png?v=upd"
                     alt=""
                     width={400}
                     height={300}
@@ -148,7 +148,7 @@ export default function SakuraHero() {
                     className="mb-4"
                 >
                     <Image
-                        src="/sakura-blossom.png"
+                        src="/sakura-blossom.png?v=2"
                         alt="Sakura"
                         width={80}
                         height={80}
@@ -209,12 +209,12 @@ export default function SakuraHero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                    className="flex flex-col sm:flex-row gap-6 justify-center items-center"
                 >
-                    <button className="btn-sakura text-lg px-10 py-4 cursor-pointer">
+                    <button className="btn-sakura text-lg px-10 py-4 cursor-pointer shadow-xl">
                         เริ่มต้นการเดินทาง →
                     </button>
-                    <span className="text-sm opacity-50" style={{ fontFamily: "var(--font-mincho)", color: "var(--wood)" }}>
+                    <span className="text-base md:text-lg opacity-40 font-medium" style={{ fontFamily: "var(--font-mincho)", color: "var(--wood)" }}>
                         旅を始める
                     </span>
                 </motion.div>
@@ -224,15 +224,15 @@ export default function SakuraHero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2, duration: 1 }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2"
+                    className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:block" // Hidden on small mobile to avoid overlap
                 >
                     <motion.div
-                        animate={{ y: [0, 12, 0] }}
+                        animate={{ y: [0, 8, 0] }}
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                        className="flex flex-col items-center gap-2"
+                        className="flex flex-col items-center gap-1"
                     >
-                        <span className="text-sm opacity-50" style={{ color: "var(--wood-light)" }}>スクロール</span>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--wood-light)" strokeWidth="2" className="opacity-50">
+                        <span className="text-[10px] tracking-widest opacity-30" style={{ color: "var(--wood-light)" }}>スクロール</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--wood-light)" strokeWidth="2" className="opacity-30">
                             <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
                         </svg>
                     </motion.div>
