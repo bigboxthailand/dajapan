@@ -216,11 +216,11 @@ export default function BentoBox() {
                             initial={{ opacity: 0, y: 20, height: 0 }}
                             animate={{ opacity: 1, y: 0, height: "auto" }}
                             exit={{ opacity: 0, y: 20, height: 0 }}
-                            className="mt-6 rounded-2xl p-6 text-center"
+                            className="mt-6 rounded-2xl p-6 text-center shadow-lg"
                             style={{
-                                background: "rgba(255,255,255,0.8)",
+                                background: "var(--washi)", // Use theme's washi for consistency
                                 border: "2px solid var(--sakura)",
-                                backdropFilter: "blur(10px)",
+                                backdropFilter: "blur(20px)",
                             }}
                         >
                             <p className="text-sm mb-2" style={{ color: "var(--wood-light)" }}>
@@ -234,8 +234,13 @@ export default function BentoBox() {
                                             key={id}
                                             initial={{ scale: 0 }}
                                             animate={{ scale: 1 }}
-                                            className="flex items-center gap-2 px-3 py-1 rounded-full text-sm border"
-                                            style={{ background: `${course.color}10`, color: course.color, borderColor: `${course.color}30` }}
+                                            className="flex items-center gap-2 px-3 py-1 rounded-full text-sm font-bold border"
+                                            style={{
+                                                background: "white",
+                                                color: "#2a0c0a", // Darker text for readability 
+                                                borderColor: course.color,
+                                                boxShadow: `0 2px 4px ${course.color}20`
+                                            }}
                                         >
                                             <div className="relative w-5 h-5 rounded-full overflow-hidden border border-white/20">
                                                 <Image src={course.bgImage} alt="" fill className="object-cover" />

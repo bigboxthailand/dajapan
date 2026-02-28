@@ -129,14 +129,14 @@ export default function FloatingSymbols() {
                                 className="text-lg md:text-xl font-black mb-1 tracking-tight"
                                 style={{
                                     fontFamily: "var(--font-mincho)",
-                                    color: "var(--wood)",
+                                    color: "#3a2412", // Dark Ink color for contrast on paper
                                 }}
                             >
                                 {symbol.label}
                             </h3>
                             <p
                                 className="text-[10px] md:text-xs font-bold tracking-widest uppercase"
-                                style={{ color: "var(--matcha)" }}
+                                style={{ color: "#2d4a1e" }} // Dark Matcha color for contrast
                             >
                                 {symbol.alt}
                             </p>
