@@ -115,65 +115,111 @@ export default function FujiPapercraft() {
             </div>
 
             {/* Papercraft Mt. Fuji using real image - GIGANTIC VERSION */}
-            <div className="relative w-full h-[580px] md:h-[650px] mt-10">
+            <div className="relative w-full h-[580px] md:h-[800px] mt-10">
 
 
 
-                {/* ===== Hawks flying from Right to Left ===== */}
+                {/* ===== UNIFIED PAPERCRAFT ASSEMBLY GROUP ===== */}
                 <motion.div
-                    className="absolute z-20 pointer-events-none"
-                    style={{ top: "0%", right: "-10%" }}
-                    initial={{ x: "0%", opacity: 0 }}
-                    whileInView={{
-                        x: ["0%", "-600%", "-1200%"],
-                        y: [0, -40, -20, -60, -30],
-                        opacity: [0, 1, 1, 1, 0],
-                    }}
-                    transition={{
-                        duration: 7,
-                        delay: 2.2,
-                        ease: "easeInOut",
-                    }}
-                    viewport={{ once: true }}
-                >
-                    <Image
-                        src="/hawk.png"
-                        alt="Hawk flying"
-                        width={120}
-                        height={120}
-                        className="w-20 md:w-32 h-auto"
-                    />
-                </motion.div>
-
-                {/* Mt. Fuji image - GIGANTIC assembly - SHIFTED UP to cover half the sun */}
-                <motion.div
-                    className="absolute inset-0 flex items-center justify-center z-10"
+                    className="absolute inset-x-0 top-0 flex items-start justify-center z-10 h-full pointer-events-none"
                     style={{
-                        scale: useTransform(assembleProgress, [0, 0.7], [1, 1]),
-                        opacity: useTransform(assembleProgress, [0.05, 0.5], [0, 1]),
-                        y: useTransform(assembleProgress, [0, 0.6], [150, isMobile ? 10 : -10]), // มือถือ 10 (สูงขึ้น 20px), desktop -10 (ต่ำลง 100px)
+                        scale: useTransform(assembleProgress, [0, 0.7], [1.1, 1]),
+                        y: useTransform(assembleProgress, [0, 0.6], [100, isMobile ? -20 : -50]),
+                        opacity: useTransform(assembleProgress, [0.05, 0.3], [0, 1]),
                     }}
                 >
-                    <motion.div
-                        className="w-full h-full"
-                        initial={{ opacity: 0, y: 100 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{
-                            duration: 1.2,
-                            delay: 0.6,
-                        }}
-                        viewport={{ once: true }}
-                    >
-                        <video
-                            src="/fuji.mp4"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="w-full h-full object-cover drop-shadow-2xl"
-                            style={{ objectFit: 'cover' }}
-                        />
-                    </motion.div>
+                    <div className="relative w-full max-w-[1000px] aspect-[1/1] flex items-center justify-center">
+
+                        {/* 1. Rising Sun - Centered behind the new high peak */}
+                        <motion.div
+                            className="absolute left-[50%] -translate-x-1/2 -translate-y-1/2 z-[5]"
+                            style={{ top: isMobile ? "25%" : "32%" }}
+                            initial={{ y: 200, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 0.9 }}
+                            transition={{ duration: 2, delay: 0.6 }}
+                            viewport={{ once: true }}
+                        >
+                            <Image src="/sun.png?v=refresh" alt="Sun" width={600} height={600} className="w-64 md:w-[600px] h-auto opacity-80" />
+                        </motion.div>
+
+                        {/* 2. Main Mt. Fuji Scene Image (New Papercraft Version) */}
+                        <motion.div
+                            className="absolute inset-0 z-10 flex items-center justify-center"
+                            initial={{ filter: "blur(10px)", opacity: 0, scale: 0.9 }}
+                            whileInView={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
+                            transition={{ duration: 1.5, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                        >
+                            <Image
+                                src="/fuji2.png?v=refresh"
+                                alt="Mount Fuji Papercraft"
+                                width={320}
+                                height={320}
+                                className="w-[80%] md:w-[70%] h-auto drop-shadow-2xl"
+                                style={{ objectFit: 'contain' }}
+                            />
+                        </motion.div>
+
+
+
+
+
+
+
+                        {/* 6. Hawk - Sweeping in from top right corner */}
+                        <motion.div
+                            className="absolute z-20"
+                            style={{ top: isMobile ? "10%" : "12%", right: isMobile ? "15%" : "5%" }}
+                            initial={{ x: 150, opacity: 0, rotate: 15 }}
+                            whileInView={{ x: 0, opacity: 1, rotate: 0 }}
+                            animate={{ y: [0, -12, 0] }}
+                            transition={{
+                                default: { duration: 1.5, delay: 1.4, type: "spring" },
+                                y: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                            }}
+                            viewport={{ once: true }}
+                        >
+                            <Image src="/hawk.png?v=refresh" alt="Hawk" width={180} height={180} className="w-24 md:w-40 h-auto drop-shadow-xl" />
+                        </motion.div>
+
+                        {/* 7. Sakura Blossom - Floating high in the left corner */}
+                        <motion.div
+                            className="absolute z-20"
+                            style={{ top: "10%", left: "8%" }}
+                            initial={{ y: -50, opacity: 0, rotate: -20 }}
+                            whileInView={{ y: 0, opacity: 0.9, rotate: 0 }}
+                            animate={{ rotate: [0, 15, 0], y: [0, 8, 0] }}
+                            transition={{
+                                default: { duration: 2, delay: 2.4 },
+                                rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                                y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+                            }}
+                            viewport={{ once: true }}
+                        >
+                            <Image src="/sakura-blossom.png?v=refresh" alt="Sakura" width={100} height={100} className="w-16 md:w-20 h-auto" />
+                        </motion.div>
+
+
+
+                        {/* 9. Sumo - Returns for Desktop View */}
+                        {!isMobile && (
+                            <motion.div
+                                className="absolute z-30"
+                                style={{ bottom: "20%", right: "15%" }}
+                                initial={{ y: 50, opacity: 0, scale: 0.8 }}
+                                whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                                animate={{ y: [0, -5, 0] }}
+                                transition={{
+                                    default: { duration: 1.2, delay: 2.5, type: "spring" },
+                                    y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                                }}
+                                viewport={{ once: true }}
+                            >
+                                <Image src="/sumo.png?v=refresh" alt="Sumo" width={120} height={120} className="w-28 h-auto drop-shadow-lg" />
+                            </motion.div>
+                        )}
+
+                    </div>
                 </motion.div>
 
                 {/* Eruption particles */}
@@ -192,7 +238,7 @@ export default function FujiPapercraft() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 viewport={{ once: true }}
-                className="max-w-2xl mx-auto text-center px-6 z-10 mt-8 md:mt-0"
+                className="max-w-2xl mx-auto text-center px-6 z-10 mt-8 md:mt-32"
             >
                 <p className="text-base md:text-lg leading-relaxed mb-4" style={{ color: "var(--wood-light)" }}>
                     เช่นเดียวกับภูเขาไฟฟูจิที่ยิ่งใหญ่ การใช้ภาษาต้องสร้างจากรากฐานที่มั่นคง
