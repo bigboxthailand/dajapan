@@ -223,7 +223,7 @@ export default function ToriiFooter() {
                     {/* Divider */}
                     <div className="border-t pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style={{ borderColor: isNight ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)" }}>
                         <p className="text-sm" style={{ color: isNight ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.4)" }}>
-                            © 2025 สอนญี่ปุ่น.com — สงวนลิขสิทธิ์
+                            © 2025 สอนภาษาญี่ปุ่น.com — สงวนลิขสิทธิ์
                         </p>
                         <div className="flex gap-6">
                             <a href="#" className="text-sm transition-colors" style={{ color: isNight ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.4)" }}>
