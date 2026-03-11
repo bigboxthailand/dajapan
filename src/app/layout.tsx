@@ -16,16 +16,59 @@ const mincho = Sawarabi_Mincho({
 });
 
 export const metadata: Metadata = {
-  title: "สอนญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
-  description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง สอนสนุก เข้าใจง่าย เริ่มต้นตั้งแต่พื้นฐานจนถึงระดับสูง",
-  keywords: ["เรียนภาษาญี่ปุ่น", "สอนญี่ปุ่น", "ภาษาญี่ปุ่นออนไลน์", "เซนเซ", "Next.js", "Framer Motion"],
+  metadataBase: new URL("https://สอนญี่ปุ่น.com"),
+  title: {
+    default: "สอนญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
+    template: "%s | สอนญี่ปุ่น.com",
+  },
+  description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง สอนสนุก เข้าใจง่าย เริ่มต้นตั้งแต่พื้นฐานจนถึงระดับสูง JLPT N5-N1",
+  keywords: ["เรียนภาษาญี่ปุ่น", "สอนภาษาญี่ปุ่น", "ภาษาญี่ปุ่นออนไลน์", "เซนเซ", "JLPT", "ติวสอบภาษาญี่ปุ่น", "ญี่ปุ่นพื้นฐาน", "เรียนภาษาญี่ปุ่นด้วยตัวเอง"],
+  authors: [{ name: "Nat San", url: "https://สอนญี่ปุ่น.com" }],
+  creator: "Nat San",
+  publisher: "สอนญี่ปุ่น.com",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "สอนญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
-    description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง",
+    description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง สอนสนุก เข้าใจง่าย เริ่มต้นตั้งแต่พื้นฐานจนถึงระดับสูง",
     url: "https://สอนญี่ปุ่น.com",
     siteName: "สอนญี่ปุ่น.com",
     locale: "th_TH",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg", // Make sure to add this image to the public folder later if not exists
+        width: 1200,
+        height: 630,
+        alt: "เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "สอนญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
+    description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง สอนสนุก เข้าใจง่าย เริ่มต้นตั้งแต่พื้นฐานจนถึงระดับสูง",
+    images: ["/og-image.jpg"], // Make sure to add this image to the public folder
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "Q8F9uqkVJUKRFvpc6aW7Cj960aj4HZL7tsvfIsz5Qhs",
   },
 };
 
@@ -34,8 +77,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://สอนญี่ปุ่น.com/#website",
+        url: "https://สอนญี่ปุ่น.com/",
+        name: "สอนญี่ปุ่น.com",
+        description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง",
+        inLanguage: "th-TH"
+      },
+      {
+        "@type": "EducationalOrganization",
+        "@id": "https://สอนญี่ปุ่น.com/#organization",
+        name: "สอนญี่ปุ่น.com",
+        url: "https://สอนญี่ปุ่น.com/",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://สอนญี่ปุ่น.com/og-image.jpg"
+        },
+        sameAs: [
+          // "https://www.facebook.com/your-facebook-page",
+        ]
+      }
+    ]
+  };
+
   return (
     <html lang="th" className={`${sansJP.variable} ${mincho.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="antialiased washi-pattern">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
