@@ -245,9 +245,9 @@ export default function TeacherSection() {
                         viewport={{ once: true }}
                         className="mt-10"
                     >
-                        <button className="btn-sakura text-base cursor-pointer">
+                        <a href="https://lin.ee/yHWc9AL" target="_blank" rel="noopener noreferrer" className="btn-sakura text-base cursor-pointer inline-block px-8 py-3">
                             🍵 นัดเรียนกับเซนเซ Nat San
-                        </button>
+                        </a>
                     </motion.div>
                 </div>
             </div>

@@ -48,19 +48,38 @@ export default function Footer() {
                     {[
                         {
                             title: "คอร์สเรียน",
-                            links: ["JLPT N5", "JLPT N4", "JLPT N3", "สนทนา"],
+                            links: [
+                                { label: "JLPT N5", href: "https://lin.ee/yHWc9AL" },
+                                { label: "JLPT N4", href: "https://lin.ee/yHWc9AL" },
+                                { label: "JLPT N3", href: "https://lin.ee/yHWc9AL" },
+                                { label: "สนทนา", href: "https://lin.ee/yHWc9AL" },
+                            ],
                         },
                         {
                             title: "เกี่ยวกับเรา",
-                            links: ["ทีมเซนเซ", "วิธีการสอน", "รีวิว", "ติดต่อ"],
+                            links: [
+                                { label: "ทีมเซนเซ", href: "#teacher" },
+                                { label: "วิธีการสอน", href: "#about" },
+                                { label: "รีวิว", href: "#" },
+                                { label: "ติดต่อ", href: "tel:0653919824" },
+                            ],
                         },
                         {
-                            title: "แหล่งข้อมูล",
-                            links: ["บทความ", "วิดีโอฟรี", "แบบทดสอบ", "คำศัพท์"],
+                            title: "ติดต่อสอบถาม",
+                            links: [
+                                { label: "โทร: 0653919824", href: "tel:0653919824" },
+                                { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61583552302187" },
+                                { label: "Line Official", href: "https://lin.ee/yHWc9AL" },
+                            ],
                         },
                         {
                             title: "ติดตามเรา",
-                            links: ["YouTube", "Facebook", "Instagram", "Line"],
+                            links: [
+                                { label: "YouTube", href: "#" },
+                                { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61583552302187" },
+                                { label: "Instagram", href: "#" },
+                                { label: "Line", href: "https://lin.ee/yHWc9AL" },
+                            ],
                         },
                     ].map((section, i) => (
                         <motion.div
@@ -74,13 +93,15 @@ export default function Footer() {
                                 {section.title}
                             </h4>
                             <ul className="space-y-2">
-                                {section.links.map((link, j) => (
+                                {section.links.map((item, j) => (
                                     <li key={j}>
                                         <a
-                                            href="#"
+                                            href={item.href}
+                                            target={item.href.startsWith("http") ? "_blank" : undefined}
+                                            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                                             className="text-white/50 hover:text-white/90 transition-colors text-sm"
                                         >
-                                            {link}
+                                            {item.label}
                                         </a>
                                     </li>
                                 ))}

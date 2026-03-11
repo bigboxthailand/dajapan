@@ -211,9 +211,9 @@ export default function SakuraHero() {
                     transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
                     className="flex flex-col sm:flex-row gap-6 justify-center items-center"
                 >
-                    <button className="btn-sakura text-lg px-10 py-4 cursor-pointer shadow-xl">
+                    <a href="https://lin.ee/yHWc9AL" target="_blank" rel="noopener noreferrer" className="btn-sakura text-lg px-10 py-4 cursor-pointer shadow-xl inline-block">
                         เริ่มต้นการเดินทาง →
-                    </button>
+                    </a>
                     <span className="text-base md:text-lg opacity-40 font-medium" style={{ fontFamily: "var(--font-mincho)", color: "var(--wood)" }}>
                         旅を始める
                     </span>
