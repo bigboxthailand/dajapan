@@ -253,9 +253,14 @@ export default function BentoBox() {
                             <p className="text-2xl font-bold mb-4" style={{ color: "var(--matcha)" }}>
                                 รวม ฿{totalPrice.toLocaleString()}
                             </p>
-                            <button className="btn-sakura cursor-pointer">
+                            <a
+                                href="https://lin.ee/yHWc9AL"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-sakura cursor-pointer inline-block"
+                            >
                                 สั่งเบนโตะ — เริ่มเรียนเลย! 🍱
-                            </button>
+                            </a>
                         </motion.div>
                     )}
                 </AnimatePresence>
