@@ -36,7 +36,7 @@ export default function Footer() {
                         className="text-3xl md:text-4xl font-bold text-white mb-3"
                         style={{ fontFamily: "var(--font-mincho)" }}
                     >
-                        สอนภาษาญี่ปุ่น<span style={{ color: "var(--matcha-light)" }}>.com</span>
+                        สอนญี่ปุ่น<span style={{ color: "var(--matcha-light)" }}>.com</span>
                     </h3>
                     <p className="text-white/60 text-base" style={{ fontFamily: "var(--font-mincho)" }}>
                         日本語を楽しく学びましょう
@@ -113,7 +113,7 @@ export default function Footer() {
                 {/* Divider */}
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-white/40 text-sm">
-                        © 2025 สอนภาษาญี่ปุ่น.com — สงวนลิขสิทธิ์
+                        © 2025 สอนญี่ปุ่น.com — สงวนลิขสิทธิ์
                     </p>
                     <div className="flex gap-6">
                         <a href="#" className="text-white/40 hover:text-white/70 text-sm transition-colors">

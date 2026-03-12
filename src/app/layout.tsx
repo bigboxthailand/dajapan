@@ -18,14 +18,14 @@ const mincho = Sawarabi_Mincho({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.สอนญี่ปุ่น.com"),
   title: {
-    default: "สอนภาษาญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
-    template: "%s | สอนภาษาญี่ปุ่น.com",
+    default: "สอนญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
+    template: "%s | สอนญี่ปุ่น.com",
   },
   description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง สอนสนุก เข้าใจง่าย เริ่มต้นตั้งแต่พื้นฐานจนถึงระดับสูง JLPT N5-N1",
-  keywords: ["เรียนภาษาญี่ปุ่น", "สอนภาษาญี่ปุ่น", "ภาษาญี่ปุ่นออนไลน์", "เซนเซ", "JLPT", "ติวสอบภาษาญี่ปุ่น", "ญี่ปุ่นพื้นฐาน", "เรียนภาษาญี่ปุ่นด้วยตัวเอง"],
+  keywords: ["เรียนภาษาญี่ปุ่น", "สอนญี่ปุ่น", "ภาษาญี่ปุ่นออนไลน์", "เซนเซ", "JLPT", "ติวสอบภาษาญี่ปุ่น", "ญี่ปุ่นพื้นฐาน", "เรียนภาษาญี่ปุ่นด้วยตัวเอง"],
   authors: [{ name: "Nat San", url: "https://www.สอนญี่ปุ่น.com" }],
   creator: "Nat San",
-  publisher: "สอนภาษาญี่ปุ่น.com",
+  publisher: "สอนญี่ปุ่น.com",
   formatDetection: {
     email: false,
     address: false,
@@ -35,10 +35,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "สอนภาษาญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
+    title: "สอนญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
     description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง สอนสนุก เข้าใจง่าย เริ่มต้นตั้งแต่พื้นฐานจนถึงระดับสูง",
     url: "https://www.สอนญี่ปุ่น.com",
-    siteName: "สอนภาษาญี่ปุ่น.com",
+    siteName: "สอนญี่ปุ่น.com",
     locale: "th_TH",
     type: "website",
     images: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "สอนภาษาญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
+    title: "สอนญี่ปุ่น.com - เรียนภาษาญี่ปุ่นออนไลน์สไตล์ญี่ปุ่นแท้ๆ",
     description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง สอนสนุก เข้าใจง่าย เริ่มต้นตั้งแต่พื้นฐานจนถึงระดับสูง",
     images: ["/og-image.jpg"], // Make sure to add this image to the public folder
   },
@@ -84,14 +84,14 @@ export default function RootLayout({
         "@type": "WebSite",
         "@id": "https://www.สอนญี่ปุ่น.com/#website",
         url: "https://www.สอนญี่ปุ่น.com/",
-        name: "สอนภาษาญี่ปุ่น.com",
+        name: "สอนญี่ปุ่น.com",
         description: "เรียนภาษาญี่ปุ่นออนไลน์แบบมืออาชีพ กับเซนเซตัวจริง",
         inLanguage: "th-TH"
       },
       {
         "@type": "EducationalOrganization",
         "@id": "https://www.สอนญี่ปุ่น.com/#organization",
-        name: "สอนภาษาญี่ปุ่น.com",
+        name: "สอนญี่ปุ่น.com",
         url: "https://www.สอนญี่ปุ่น.com/",
         logo: {
           "@type": "ImageObject",
