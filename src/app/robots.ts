@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/private/', '/api/', '/_next/'],
         },
-        sitemap: 'https://www.สอนภาษาญี่ปุ่น.com/sitemap.xml',
+        sitemap: 'https://www.สอนญี่ปุ่น.com/sitemap.xml',
     };
 }
