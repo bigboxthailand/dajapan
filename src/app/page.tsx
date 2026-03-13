@@ -6,6 +6,7 @@ import EmaReviews from "@/components/EmaReviews";
 import LearningPath from "@/components/LearningPath";
 import FloatingSymbols from "@/components/FloatingSymbols";
 import BentoBox from "@/components/BentoBox";
+import ArticleSection from "@/components/ArticleSection";
 import ToriiFooter from "@/components/ToriiFooter";
 import Preloader from "@/components/Preloader";
 import Omikuji from "@/components/Omikuji";
@@ -50,6 +51,9 @@ export default function Home() {
 
       {/* Learning Path - Scroll / Roadmap */}
       <LearningPath />
+
+      {/* News & Articles */}
+      <ArticleSection />
 
       {/* Torii Gate Footer with Newsletter */}
       <ToriiFooter />

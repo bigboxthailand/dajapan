@@ -135,3 +135,68 @@ body {
 [data-theme] img {
   transition: none;
 }
+
+/* Custom Prose for Article Content */
+.prose h2 {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--wood);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mincho);
+  border-left: 4px solid var(--sakura-deep);
+  padding-left: 1rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--matcha);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #4b4b4b;
+}
+
+.prose ul, .prose ol {
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.75rem;
+  position: relative;
+  list-style-type: none;
+  padding-left: 1.5rem;
+}
+
+.prose li::before {
+  content: "❀";
+  position: absolute;
+  left: 0;
+  color: var(--sakura-deep);
+  font-size: 0.8rem;
+}
+
+.prose img {
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.prose strong {
+  color: var(--sakura-deep);
+  font-weight: 800;
+}
+
+[data-theme="night"] .prose p {
+  color: #d1d5db;
+}
+
+[data-theme="night"] .prose h2, 
+[data-theme="night"] .prose h3 {
+  color: var(--wood);
+}
